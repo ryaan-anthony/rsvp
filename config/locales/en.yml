@@ -1,0 +1,3 @@
+en:
+  unauthorized:
+    default: "Please log in to view this page"

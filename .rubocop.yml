@@ -1,0 +1,19 @@
+AllCops:
+  TargetRubyVersion: 3
+  Exclude:
+    - bin/**/*
+    - db/**/*
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 25
+
+Metrics/BlockLength:
+  Exclude:
+    - config/**/*
+    - spec/**/*
+
+Metrics/MethodLength:
+  Max: 25

@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  timeout: 30
+  database: rsvp
+
+test:
+  <<: *default
+  database: rsvp_test
+
+development:
+  <<: *default
+
+production:
+  <<: *default
+  host: database
+  database: <%= ENV['POSTGRES_DB'] %>
+  username: postgres
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
