@@ -1,0 +1,32 @@
+version: "3.9"
+services:
+  app:
+    build:
+      context: .
+    env_file: .env
+    links:
+      - database
+      - redis
+    environment:
+      - RAILS_SERVE_STATIC_FILES=true
+    command:
+      - /bin/bash
+      - -c
+      - |
+        bundle exec rake db:migrate
+        bundle exec puma -C config/puma.rb
+  database:
+    image: "postgres:13"
+    env_file: .env
+    expose:
+      - 5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+networks:
+  redis:
+    external: true
+    name: redis_default
+
+volumes:
+  postgres_data:
