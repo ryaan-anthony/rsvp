@@ -1,11 +1,17 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  rescue_from CanCan::AccessDenied do |exception|
-    redirect_to :login, alert: exception.message
+  add_flash_types :info, :warning, :danger
+
+  def current_ability
+    @current_ability ||= Ability.new(site_id)
   end
 
-  def current_user
-    session[:site_id]
+  def site_id
+    @site_id ||= session[:site_id]
+  end
+
+  def current_site
+    @current_site ||= Site.where(site_id: site_id).first
   end
 end

@@ -5,8 +5,8 @@ class Ability
 
   def initialize(site_id)
     can :login, Site, public: true
-    return unless site_id.present?
+    return unless site_id.present? && Site.exists?(site_id: site_id)
 
-    can :index, Site, site_id: site_id
+    can :show, Site, site_id: site_id
   end
 end

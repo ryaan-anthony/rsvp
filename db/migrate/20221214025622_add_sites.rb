@@ -5,6 +5,7 @@ class AddSites < ActiveRecord::Migration[7.0]
     create_table :sites do |t|
       t.string :site_id
       t.string :template
+      t.string :body_class
 
       t.timestamps
     end

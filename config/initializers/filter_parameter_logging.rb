@@ -1,3 +1,3 @@
 # frozen_string_literal: true
 
-Rails.application.config.filter_parameters += %i[secret]
+Rails.application.config.filter_parameters += %i[passcode]

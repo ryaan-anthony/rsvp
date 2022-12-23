@@ -1,1 +1,16 @@
-LOGIN
+<div class="form-container">
+  <div class="form">
+    <%= form_with url: "/login", method: :post do |form| %>
+      <div class="mb-3">
+        <h1><%= 'Celebrate with us!' %></h1>
+      </div>
+      <div class="mb-3">
+        <%= form.label :passcode, '12/02/2023 - Philadelphia, PA' %>
+      </div>
+      <div class="mb-3">
+        <%= form.text_field :passcode, class: 'form-control', placeholder: 'Passcode' %>
+      </div>
+      <%= form.submit "Submit", class: 'btn btn-light' %>
+    <% end %>
+  </div>
+</div>

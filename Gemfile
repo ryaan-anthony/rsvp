@@ -6,6 +6,7 @@ gem 'cancancan'
 gem 'jwt'
 gem 'pg'
 gem 'puma'
+gem 'rack-attack'
 gem 'rails'
 gem 'redis'
 
