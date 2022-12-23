@@ -6,7 +6,6 @@ services:
     env_file: .env
     links:
       - database
-      - redis
     environment:
       - RAILS_SERVE_STATIC_FILES=true
     command:
