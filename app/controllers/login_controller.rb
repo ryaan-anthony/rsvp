@@ -2,7 +2,7 @@
 
 class LoginController < ApplicationController
   rescue_from ActionController::ParameterMissing do |exception|
-    redirect_to :login, danger: 'Passcode is required!'
+    redirect_to :login, danger: I18n.t('unauthorized.default')
   end
 
   def index; end
