@@ -29,10 +29,6 @@ body.login .form-container .form h1{
     font-size: calc(1.8rem + 1.5vw);
 }
 
-body.login .form-container .form label{
-}
-
-
 body.login .form-container .form p.required{
     text-align: initial;
     color: red;
