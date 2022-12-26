@@ -8,27 +8,3 @@ body.site-main {}
 /* Styles for alt site */
 
 body.site-alt {}
-
-/* Styles for login page */
-
-body.site-login {
-    background-image:    url(/images/love-park.jpeg);
-    background-size:     cover;
-    background-repeat:   no-repeat;
-    background-position: top center;
-}
-
-body.site-login .form-container {
-    padding-top: 10%;
-    text-align:center;
-}
-
-
-body.site-login .form-container .form {
-    width: 60%;
-    margin: 0 auto;
-}
-
-body.site-login .form-container .form .btn{
-    width: 100%;
-}
