@@ -5,6 +5,8 @@ body.login {
     background-size:     cover;
     background-repeat:   no-repeat;
     background-position: top center;
+    background-attachment: fixed;
+    overscroll-behavior: none;
 }
 
 body.login .form-container {
