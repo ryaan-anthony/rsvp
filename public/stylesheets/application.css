@@ -3,7 +3,14 @@
 
 /* Styles for main site */
 
-body.site-main {}
+body.site-main {
+    background-image:    url(/assets/love-park.jpeg);
+    background-size:     cover;
+    background-repeat:   no-repeat;
+    background-position: top center;
+    background-attachment: fixed;
+    overscroll-behavior: none;
+}
 
 /* Styles for alt site */
 
