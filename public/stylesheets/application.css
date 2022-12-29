@@ -12,6 +12,18 @@ body.site-main {
     overscroll-behavior: none;
 }
 
-/* Styles for alt site */
+/* Styles for admin site */
 
-body.site-alt {}
+.nav-pills {
+    --bs-nav-pills-link-active-bg: #f44336;
+}
+
+.nav {
+    --bs-nav-link-color: #f83074;
+    --bs-nav-link-hover-color: #cb1a56;
+}
+
+body.site-admin {
+    color: #222;
+    background: #f8f9fa;
+}

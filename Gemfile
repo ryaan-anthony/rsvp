@@ -13,3 +13,8 @@ gem 'redis'
 group :development, :test do
   gem 'pry'
 end
+
+group :test do
+  gem 'factory_bot_rails'
+  gem 'faker'
+end

@@ -1,0 +1,40 @@
+<%= form_with url: guests_path do |form| %>
+  <table id="mapping" class="table"></table>
+  <% @guests = [] %>
+  <%= form.hidden_field :guests_data, value: @guests.to_json %>
+  <fieldset>
+    <% @groups = [nil, "Angela's Family", "Ryans's Family"] %>
+    <% @relationships = [nil, "Grandmom", "Aunt"] %>
+    <% @going = [nil, "Yes", "No"] %>
+    <div class="mb-2">
+      <%= form.label 'Guest Name', for: :name, class: 'form-label'%>
+      <%= form.text_field :name, class: 'form-control' %>
+    </div>
+    <div class="mb-2">
+      <%= form.label 'Group', for: :group, class: 'form-label'%>
+      <%= form.select :group, options_for_select(@groups), {}, class: 'form-control'%>
+    </div>
+    <div class="mb-2">
+      <%= form.label 'Relationship', for: :relationship, class: 'form-label'%>
+      <%= form.select :relationship, options_for_select(@relationships), {}, class: 'form-control'%>
+    </div>
+    <div class="mb-2">
+      <%= form.label 'Additional guests', for: :additional, class: 'form-label'%>
+      <%= form.select :additional, options_for_select((0..4)), {}, class: 'form-control'%>
+    </div>
+    <div class="mb-2">
+      <%= form.label 'Going', for: :going, class: 'form-label'%>
+      <%= form.select :going, options_for_select(@going), {}, class: 'form-control'%>
+    </div>
+    <div class="mb-2">
+        <%= form.button 'Add to guest list', class: 'btn btn-secondary add', type: :button, onclick: 'addRow()' %>
+    </div>
+  </fieldset>
+  <div class="mt-3 text-center">
+    <%= form.button "Save all changes", class: 'btn btn-primary save' %>
+  </div>
+<% end %>
+<%= javascript_include_tag 'guests' %>
+<script>
+    renderGuests();
+</script>

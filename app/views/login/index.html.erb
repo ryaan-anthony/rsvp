@@ -5,7 +5,7 @@
         <h1><%= 'Celebrate with us!' %></h1>
       </div>
       <div class="mb-3">
-        <%= form.text_field :passcode, class: 'form-control', placeholder: 'Passcode' %>
+        <%= form.password_field :passcode, class: 'form-control', placeholder: 'Passcode' %>
         <% flash.each do |type, message| %>
           <p class="required required-<%= type %>">
             <%= message %>
@@ -19,7 +19,7 @@
         <p>
           <small>
             Forgot the passcode?
-            <a href="mailto:us@angela-ryan.rsvp?subject=Passcode%20Request">Send us an email!</a>
+            <a href="mailto:us@angela-ryan.rsvp?subject=Passcode%20Request">Send us an email</a>
           </small>
         </p>
       </div>

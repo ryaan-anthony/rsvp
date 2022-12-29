@@ -9,7 +9,7 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   </head>
 
-  <body class="site-<%= @current_site.try(:body_class) || 'default' %>">
+  <body class="<%= @current_site.try(:body_class) %>">
   <% flash.each do |type, message| %>
     <div class="alert alert-<%= type %>">
       <%= message %>
@@ -17,5 +17,6 @@
   <% end %>
     <%= yield %>
     <%= render 'shared/footer' %>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
   </body>
 </html>
