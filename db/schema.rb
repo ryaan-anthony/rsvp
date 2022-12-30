@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_30_020059) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_29_220951) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,7 +22,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_30_020059) do
     t.integer "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["first_name", "last_name"], name: "index_guests_on_first_name_and_last_name", unique: true
   end
 
   create_table "roles", force: :cascade do |t|
