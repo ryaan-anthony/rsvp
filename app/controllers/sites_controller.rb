@@ -5,6 +5,7 @@ class SitesController < ApplicationController
     redirect_to :login, warning: 'Passcode is required.'
   end
   helper AdminHelper
+  helper MainHelper
 
   def show
     authorize! :show, current_site

@@ -4,12 +4,34 @@
 /* Styles for main site */
 
 body.site-main {
-    background-image:    url(/assets/love-park.jpeg);
-    background-size:     cover;
-    background-repeat:   no-repeat;
-    background-position: top center;
-    background-attachment: fixed;
-    overscroll-behavior: none;
+    background: #f8f8fa;
+    font-family: 'Playfair Display', serif;
+}
+
+body.site-main h1,
+body.site-main h2,
+body.site-main h3,
+body.site-main h4,
+body.site-main h5
+{
+    font-family: 'Abril Fatface', serif;
+}
+
+body.site-main h1 {
+    font-size: 4.5rem;
+}
+
+body.site-main .welcome-container {
+    height: 500px;
+    position: relative;
+}
+body.site-main .welcome-container .welcome-banner {
+    background-image: url(/assets/welcome-banner.jpeg);
+    background-size: cover;
+    background-position: center center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
 
 /* Styles for admin site */
