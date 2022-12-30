@@ -4,6 +4,12 @@ class GuestsController < ApplicationController
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to '/', warning: exception.message
   end
+  rescue_from ActiveRecord::RecordInvalid do |exception|
+    redirect_to '/', danger: exception.message
+  end
+  rescue_from PG::UniqueViolation do
+    redirect_to '/', danger: 'Guest already exists.'
+  end
 
   def update
     authorize! :update, Guest

@@ -1,46 +1,41 @@
-
-<% # TODO: remove stubs %>
-<% @groups = [['Select a group', nil], "Angela's Family", "Ryans's Family"] %>
-<% @filter_groups = [['Filter by group', nil], "Angela's Family", "Ryans's Family"] %>
-
 <%= form_with url: guests_path, id: 'guests' do |form| %>
-  <%= form.hidden_field :guests_data, value: @guests.to_json %>
+  <%= form.hidden_field :guests_data, value: guests_data %>
 <% end %>
 
-<div class="row text-center border mb-3 p-3">
+<div id="guests-summary" class="row text-center border mb-3 p-3">
   <div class="col">
-    <span class="NUM">2</span>
-    <div class="LABEL">
-      <span class="INNER">Invited</span>
-    </div>
+    <span class="fs-1"><%= Guest.count %></span>
+    <div class="small">Invited</div>
   </div>
   <div class="col">
-    <span class="NUM">0</span>
-    <div class="LABEL">
-      <span class="INNER">Yes</span>
-    </div>
+    <span class="fs-1"><%= Guest.coming.count %></span>
+    <div class="small">Coming</div>
   </div>
   <div class="col">
-    <span class="NUM">0</span>
-    <div class="LABEL">
-      <span class="INNER">No</span>
-    </div>
+    <span class="fs-1"><%= Guest.not_coming.count %></span>
+    <div class="small">Not Coming</div>
+  </div>
+  <div class="col">
+    <span class="fs-1"><%= Guest.no_response.count %></span>
+    <div class="small">No Response</div>
   </div>
 </div>
 
-<div class="container">
-  <div class="float-start">
-    <%= select_tag :group_filter, options_for_select(@filter_groups), class: 'form-control', onchange: 'filterByGroup()' %>
+<div id="guests-table" class="row">
+  <div class="col">
+    <%= select_tag :group_filter, options_for_select(filter_groups), class: 'form-select form-select-sm', onchange: 'filterByGroup()' %>
   </div>
-  <div class="float-end">
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#new_guest_form">Add guests</button>
+  <div class="col">
+    <%= select_tag :status_filter, options_for_select(filter_status), class: 'form-select form-select-sm', onchange: 'filterByStatus()' %>
   </div>
+  <div class="col">
+    <button type="button" class="btn btn-primary btn-sm float-end" data-bs-toggle="modal" data-bs-target="#new_guest_form">Add Guests</button>
+  </div>
+  <table id="guest_list" class="table table-hover"></table>
 </div>
-
-<table id="guest_list" class="table"></table>
 
 <!-- Modal -->
-<div class="modal fade" id="new_guest_form" tabindex="-1" role="dialog" aria-hidden="true">
+<div id="new_guest_form" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -49,7 +44,7 @@
       </div>
       <div class="modal-body">
         <div class="mb-2">
-          <%= select_tag :group, options_for_select(@groups), class: 'form-control'%>
+          <%= select_tag :group, options_for_select(select_groups), class: 'form-select' %>
         </div>
         <div class="row mb-2">
           <div class="col">

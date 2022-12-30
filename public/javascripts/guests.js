@@ -1,13 +1,8 @@
-var showStatus = function(status) {
-    switch(status) {
-        case false:
-            return 'No'
-            break;
-        case true:
-            return 'Yes'
-            break;
-        default:
-            return '-';
+var isSelected = function(status, expected) {
+    if(status === expected){
+        return 'selected';
+    } else {
+        return '';
     }
 };
 
@@ -16,17 +11,29 @@ var renderGuests = function() {
     var guest_list = document.getElementById("guest_list");
     guest_list.innerHTML = `<tr><th>Name</th><th>Group</th><th>RSVP</th><th></th></tr>`;
     JSON.parse(guests_data.value).forEach(function(guest, index) {
-        guest_list.innerHTML += `<tr>
+        guest_list.innerHTML += `<tr class="align-middle">
                                 <td>${guest.first_name} ${guest.last_name}</td>
-                                <td class="row-group">${guest.group}</td>
-                                <td>${showStatus(guest.status)}</td>
+                                <td class="row-group small">${guest.group}</td>
+                                <td class="row-status">
+                                    <select class="form-select form-select-sm" onchange="updateRsvp(this, ${index}, false)">
+                                        <option value="" ${isSelected(guest.status, null)}>No Response</option>
+                                        <option value="1" ${isSelected(guest.status, true)}>Coming</option>
+                                        <option value="0" ${isSelected(guest.status, false)}>Not Coming</option>
+                                    </select>
+                                </td>
                                 <td class="text-end"><button type="button" class="btn btn-secondary btn-sm remove" onclick="removeRow(${index})"><i class="bi bi-trash3"></i></button></td>
                             </tr>`;
         guest.guests_attributes.forEach(function(element, idx){
-            guest_list.innerHTML += `<tr>
+            guest_list.innerHTML += `<tr class="align-middle table-warning">
                                 <td>${element.first_name} ${element.last_name}</td>
-                                <td class="row-group">${element.group}</td>
-                                <td>${showStatus(element.status)}</td>
+                                <td class="row-group small">${element.group}</td>
+                                <td class="row-status">
+                                    <select class="form-select form-select-sm" onchange="updateRsvp(this, ${index}, ${idx})">
+                                        <option value="" ${isSelected(element.status, null)}>No Response</option>
+                                        <option value="1" ${isSelected(element.status, true)}>Coming</option>
+                                        <option value="0" ${isSelected(element.status, false)}>Not Coming</option>
+                                    </select>
+                                </td>
                                 <td class="text-end"><button type="button" class="btn btn-secondary btn-sm remove" onclick="removePlusOne(${index}, ${idx})"><i class="bi bi-trash3"></i></button></td>
                             </tr>`;
         });
@@ -74,6 +81,19 @@ var removePlusOne = function(parent, child) {
     document.getElementById("guests").submit();
 };
 
+var updateRsvp = function(element, parent, child) {
+    var guests_data = document.getElementById("guests_data");
+    var guests_json = JSON.parse(guests_data.value);
+    var status = element.value === "" ? null : element.value === "1";
+    if(child === false){
+        guests_json[parent].status = status;
+    } else {
+        guests_json[parent].guests_attributes[child].status = status;
+    }
+    guests_data.value = JSON.stringify(guests_json);
+    document.getElementById("guests").submit();
+};
+
 var filterByGroup = function() {
     var filter = document.getElementById("group_filter");
     var elements = document.getElementsByClassName("row-group");
@@ -81,6 +101,22 @@ var filterByGroup = function() {
         if (filter.value === "") {
             element.parentElement.classList.remove('d-none');
         } else if(element.innerHTML === filter.value){
+            element.parentElement.classList.remove('d-none');
+        } else {
+            element.parentElement.classList.add('d-none');
+        }
+    }
+};
+
+var filterByStatus = function() {
+    var filter = document.getElementById("status_filter");
+    var elements = document.getElementsByClassName("row-status");
+    console.log(filter.value);
+    for (element of elements) {
+        console.log(element.children[0].value);
+        if (filter.value === "") {
+            element.parentElement.classList.remove('d-none');
+        } else if(element.children[0].options[element.children[0].selectedIndex].text === filter.value){
             element.parentElement.classList.remove('d-none');
         } else {
             element.parentElement.classList.add('d-none');
