@@ -9,6 +9,7 @@ gem 'puma'
 gem 'rack-attack'
 gem 'rails'
 gem 'redis'
+gem 'rolify'
 
 group :development, :test do
   gem 'pry'

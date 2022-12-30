@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_29_154907) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_29_220951) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -24,12 +24,30 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_29_154907) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.string "resource_type"
+    t.bigint "resource_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
+    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
+  end
+
   create_table "sites", force: :cascade do |t|
     t.string "site_id"
     t.string "template"
     t.string "body_class"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "sites_roles", id: false, force: :cascade do |t|
+    t.bigint "site_id"
+    t.bigint "role_id"
+    t.index ["role_id"], name: "index_sites_roles_on_role_id"
+    t.index ["site_id", "role_id"], name: "index_sites_roles_on_site_id_and_role_id"
+    t.index ["site_id"], name: "index_sites_roles_on_site_id"
   end
 
 end

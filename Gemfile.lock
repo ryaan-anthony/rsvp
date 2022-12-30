@@ -153,6 +153,7 @@ GEM
       redis-client (>= 0.9.0)
     redis-client (0.11.2)
       connection_pool
+    rolify (6.0.0)
     thor (1.2.1)
     timeout (0.3.1)
     tzinfo (2.0.5)
@@ -176,6 +177,7 @@ DEPENDENCIES
   rack-attack
   rails
   redis
+  rolify
 
 BUNDLED WITH
    2.3.26
