@@ -8,10 +8,21 @@
   <h4><%= days_to_go %></h4>
   <hr class="m-5"/>
   <%= button_tag "RSVP", class: 'btn btn-danger fs-1 px-5', onclick: 'showRsvpForm(this)' %>
-  <div id="rsvp" class="border rounded m-5 p-2 d-none">
+  <div id="rsvp" class="border rounded m-3 p-2 d-none">
     <p><%= "Please enter the first and last name of one member of your party below." %></p>
-    <p><%= text_field_tag :name, nil, class: 'form-control', placeholder: "First and Last Name" %></p>
-    <%= button_tag "Continue", class: 'btn btn-secondary' %>
+    <p>
+      <%= text_field_tag :guest, nil, class: 'form-control', placeholder: "First and Last Name" %>
+      <small id="name-required" class="d-none text-danger">Name is required!</small>
+    </p>
+    <script>
+        document.getElementById("guest").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") { findGuest(); }
+        });
+    </script>
+    <%= button_tag "Continue", id: 'submit-rsvp', class: 'btn btn-secondary fs-4', onclick: 'findGuest()' %>
+    <%= hidden_field_tag :guests, guests_data %>
+    <div id="none-found" class="d-none alert alert-warning">Couldn't find you, sorry! Please <a href="mailto:us@angela-ryan.rsvp">contact us</a> to be added to the guest list.</div>
+    <div id="found" class="p-3 text-start"></div>
   </div>
   <hr class="m-5"/>
   <h3>TRUE STORY</h3>

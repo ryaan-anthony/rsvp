@@ -8,4 +8,11 @@ module MainHelper
       ''
     end
   end
+
+  def guests_data
+    Guest.parents.as_json(
+      only: %i[first_name last_name status group],
+      methods: :guests_attributes
+    ).to_json
+  end
 end
