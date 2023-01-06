@@ -1,16 +1,34 @@
-/* Global styles */
+/* Fade in CSS effect */
 @keyframes fadeIn {
     0% { opacity: 0; }
     100% { opacity: 1; }
 }
-
-img.payment { height: 2rem; }
-.alert { margin: 1em }
 .fade-in { animation: fadeIn 1s; }
 
 
+/* Bootstrap overrides */
+.alert {
+    margin: 1em;
+}
+
+hr {
+    color: var(--bs-dark-border-subtle);
+}
+
 .btn-light {
     --bs-btn-bg: #f1f1f1;
+}
+
+
+/* Custom components */
+img.payment { height: 2rem; }
+
+.attending-yes:checked ~ label {
+    color: var(--bs-success);
+}
+
+.attending-no:checked ~ label {
+    color: var(--bs-danger);
 }
 
 /* Styles for main site */

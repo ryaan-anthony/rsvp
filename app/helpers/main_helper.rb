@@ -11,8 +11,8 @@ module MainHelper
 
   def guests_data
     Guest.parents.as_json(
-      only: %i[first_name last_name status group],
-      methods: :guests_attributes
+      only: %i[id first_name last_name status],
+      methods: :guests_attributes_rsvp
     ).to_json
   end
 end

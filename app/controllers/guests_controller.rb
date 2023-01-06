@@ -11,9 +11,12 @@ class GuestsController < ApplicationController
   def rsvp
     authorize! :rsvp, Guest
 
-    # binding.pry
+    rsvp_params.each do |guest_id, request|
+      guest = Guest.find(guest_id)
+      guest.update!(status: request[:status])
+    end
 
-    flash[:success] = 'Your RSVP status has been updated!'
+    flash[:success] = 'Thank you! Your response has been recorded.'
     redirect_to '/'
   end
 
@@ -27,6 +30,12 @@ class GuestsController < ApplicationController
 
     flash[:success] = 'Guest list has been updated!'
     redirect_to '/'
+  end
+
+  private
+
+  def rsvp_params
+    params.require(:rsvp)
   end
 
   def guests_params

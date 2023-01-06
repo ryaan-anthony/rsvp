@@ -14,4 +14,8 @@ class Guest < ApplicationRecord
   def guests_attributes
     guests.as_json(only: %i[first_name last_name status group])
   end
+
+  def guests_attributes_rsvp
+    guests.as_json(only: %i[id first_name last_name status])
+  end
 end
