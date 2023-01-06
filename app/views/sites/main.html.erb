@@ -7,7 +7,13 @@
   <h3>Philadelphia, PA</h3>
   <h4><%= days_to_go %></h4>
   <hr class="m-5"/>
-  <button class="btn btn-danger fs-1 px-5">RSVP</button>
+  <%= button_tag "RSVP", class: 'btn btn-danger fs-1 px-5', onclick: 'showRsvpForm(this)' %>
+  <div id="rsvp" class="border rounded m-5 p-5 d-none">
+    <p><%= "Please enter the first and last name of one member of your party below. If you're responding for you and a guest (or your family), you'll be able to RSVP for your entire group on the next page." %></p>
+    <%= text_field_tag :name, nil, class: 'form-control w-50 mx-auto', placeholder: "First and Last Name" %>
+    <p><small>Ex. Sarah Fortune (not The Fortune Family or Dr. & Mr. Fortune)</small></p>
+    <%= button_tag "Continue", class: 'btn btn-secondary' %>
+  </div>
   <hr class="m-5"/>
   <h3>TRUE STORY</h3>
   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -21,5 +27,11 @@
   <p>The ceremony starts promptly at 3pm.</p>
   <h5>Are children allowed at the wedding?</h5>
   <p>We respectfully ask that no children under the age of 12 attend the ceremony and reception.</p>
+  <h5>Do you have a wedding registry?</h5>
+  <p>Cash gifts welcome — we’ll use them to make our honeymoon memorable!</p>
+  <p><a class="btn btn-sm btn-light border" href="https://venmo.com/u/ryan-tulino"><img class="payment" src="/assets/venmo.png"/></a></p>
+  <p><a class="btn btn-sm btn-light border" href="paypal.me/weblincmadness"><img class="payment" src="/assets/paypal.png"/></a></p>
   <hr class="m-5"/>
 </div>
+
+<%= javascript_include_tag 'rsvp' %>

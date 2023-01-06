@@ -8,6 +8,15 @@ class GuestsController < ApplicationController
     redirect_to '/', danger: exception.message
   end
 
+  def rsvp
+    authorize! :rsvp, Guest
+
+    # binding.pry
+
+    flash[:success] = 'Your RSVP status has been updated!'
+    redirect_to '/'
+  end
+
   def update
     authorize! :update, Guest
 

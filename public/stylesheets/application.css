@@ -1,18 +1,28 @@
 /* Global styles */
-.alert { margin: 1em }
-
-/* Styles for main site */
-
-body.site-main {
-    background: #f8f8fa;
-    font-family: 'Playfair Display', serif;
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 }
 
+img.payment { height: 2rem; }
+.alert { margin: 1em }
+.fade-in { animation: fadeIn 1s; }
+
+
+.btn-light {
+    --bs-btn-bg: #f1f1f1;
+}
+
+/* Styles for main site */
+body.site-main {
+    font-family: 'Playfair Display', serif;
+}
 body.site-main h1,
 body.site-main h2,
 body.site-main h3,
 body.site-main h4,
-body.site-main h5
+body.site-main h5,
+body.site-main .btn
 {
     font-family: 'Abril Fatface', serif;
 }
@@ -25,6 +35,7 @@ body.site-main .welcome-container {
     height: 500px;
     position: relative;
 }
+
 body.site-main .welcome-container .welcome-banner {
     background-image: url(/assets/welcome-banner.jpeg);
     background-size: cover;

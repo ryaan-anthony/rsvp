@@ -1,67 +1,270 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>The page you were looking for doesn't exist (404)</title>
+  <title>We're sorry, but something went wrong (500)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
-  .rails-default-error-page {
-    background-color: #EFEFEF;
-    color: #2E2F30;
-    text-align: center;
-    font-family: arial, sans-serif;
-    margin: 0;
-  }
+    @import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&display=swap');
 
-  .rails-default-error-page div.dialog {
-    width: 95%;
-    max-width: 33em;
-    margin: 4em auto 0;
-  }
+    body {
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      display: flex;
+      background-color: #c75146;
+      overflow: hidden;
+    }
 
-  .rails-default-error-page div.dialog > div {
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #BBB;
-    border-top: #B00100 solid 4px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
-    background-color: white;
-    padding: 7px 12% 0;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
+    .jewellery-box {
+      position: relative;
+      filter: drop-shadow(0 0 30px rgba(0,0,0,0.4));
+    }
 
-  .rails-default-error-page h1 {
-    font-size: 100%;
-    color: #730E15;
-    line-height: 1.5em;
-  }
+    input#open {
+      display: none;
+    }
 
-  .rails-default-error-page div.dialog > p {
-    margin: 0 0 1em;
-    padding: 1em;
-    background-color: #F7F7F7;
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #999;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-top-color: #DADADA;
-    color: #666;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
+    .diamond-ring {
+      position: relative;
+    }
+
+    .diamond {
+      position: relative;
+      border-style: solid;
+      border-color: transparent transparent #27c3f3 transparent;
+      border-width: 0 5px 5px 5px;
+      height: 0;
+      width: 15px;
+      z-index:1;
+    }
+    .diamond:before {
+      content: "";
+      position: absolute;
+      top: 5px;
+      left: -5px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-color: #27c3f3 transparent transparent transparent;
+      border-width: 15px 12.5px 0 12.5px;
+    }
+
+    .diamond:after {
+      content:"";
+      position: absolute;
+      border-style: solid;
+      border-color: #7fd4f9 transparent transparent transparent;
+      border-width: 15px 7px 7px;
+      width:0;
+      height:0;
+      left:0.5px;
+      top:5px;
+    }
+
+    .inner {
+      position:absolute;
+      background-color: #cf7b4a;
+      width:70px;
+      height:15px;
+      z-index:3;
+      left:-20px;
+      top:55px;
+      border-radius:20px 20px 0 0;
+    }
+
+    .band {
+      position: absolute;
+      width:45px;
+      height:45px;
+      border: 5px solid #fed53f;
+      border-radius: 50%;
+      top:15px;
+      left:-15px;
+      z-index:1;
+    }
+
+    .band:before, .band:after {
+      content:"+";
+      position: absolute;
+      color:rgba(255,255,255,.5);
+    }
+
+    .band:before {
+      left:5px;
+      top:-15px;
+      font-size:7px;
+      text-shadow: 20px -12px;
+      animation: shine .5s linear infinite;
+    }
+
+    .band:after {
+      left:32px;
+      top:-12px;
+      font-size:9px;
+      text-shadow: -19px -18px;
+      animation: shine .5s linear infinite .2s;
+    }
+
+    @keyframes shine {
+      from {opacity:1;}
+      to {opacity:0;}
+    }
+
+    .open {
+      position: absolute;
+      z-index:5;
+      background-color: #81171b;
+      width: 170px;
+      height:40px;
+      border-radius: 30px 30px 0 0;
+      left:-70px;
+      top:-10px;
+      transition: .1s;
+      cursor: pointer;
+    }
+
+    .bottom {
+      position: absolute;
+      z-index:5;
+      background-color: #81171b;
+      width:170px;
+      height:40px;
+      box-shadow: 0 -10px #540804;
+      border-radius: 0 0 15px 15px;
+      top:40px;
+      left:-70px;
+      transition: .1s;
+    }
+
+    .bottom:before {
+      content:"";
+      position: absolute;
+      border-radius:50%;
+      width:10px;
+      height:10px;
+      background-color: #ad2e24;
+      top:13px;
+      left:13px;
+      box-shadow: 15px 0 #ad2e24, 30px 0 #ad2e24, 45px 0 #ad2e24, 60px 0 #ad2e24, 75px 0 #ad2e24, 90px 0 #ad2e24, 105px 0 #ad2e24, 120px 0 #ad2e24, 135px 0 #ad2e24;
+    }
+
+    #open:checked + .open {
+      transform: translateY(-40px);
+    }
+
+    #open:checked ~  .bottom {
+      transform: translateY(45px);
+    }
+
+    .inner-top {
+      position: absolute;
+      width:150px;
+      height:0;
+      border-style: solid;
+      border-width: 0 10px 50px 10px;
+      border-color: transparent transparent #912820 transparent;
+      transition: .1s;
+      transform-origin: top;
+      left:-70px;
+      top:40px;
+      transform: rotateX(85deg);
+    }
+
+    .inner-top:before {
+      content:"";
+      position: absolute;
+      width:130px;
+      height:0;
+      border-style: solid;
+      border-width: 0 10px 50px 10px;
+      border-color: transparent transparent #ad2e24 transparent;
+      transition: .1s;
+      transform-origin: top;
+      left:0;
+      top:0;
+    }
+
+    #open:checked ~  .inner-top {
+      transform: rotateX(180deg);
+    }
+
+    .inner-bottom {
+      position: absolute;
+      width:150px;
+      height:0;
+      border-style: solid;
+      border-width: 0 10px 60px 10px;
+      border-color: transparent transparent #732019 transparent;
+      transition: .1s;
+      transform-origin: top;
+      left:-70px;
+      top:40px;
+      transform: rotateX(85deg);
+    }
+
+    .inner-bottom:before {
+      content:"";
+      position: absolute;
+      width:130px;
+      height:0;
+      border-style: solid;
+      border-width: 0 10px 60px 10px;
+      border-color: transparent transparent #cf7b4a transparent;
+      transition: .1s;
+      transform-origin: top;
+      left:0;
+      top:0;
+    }
+
+    #open:checked ~  .inner-bottom {
+      transform: rotateX(-40deg);
+    }
+
+    .details {
+      position: absolute;
+      width:132px;
+      background-color: #cf7b4a;
+      border-radius:20px 20px 0 0;
+      height:10px;
+      left:-51px;
+      top:35px;
+    }
+
+    .text {
+      position: absolute;
+      color: white;
+      font-family: 'Mochiy Pop P One', sans-serif;
+      font-size: 30px;
+      transition: .3s;
+      width:300px;
+      text-align: center;
+      top:-165px;
+      left:-130px;
+      opacity:0;
+    }
+
+    #open:checked ~  .text {
+      opacity:1;
+    }
+
+
   </style>
 </head>
 
-<body class="rails-default-error-page">
-  <!-- This file lives in public/404.html -->
-  <div class="dialog">
-    <div>
-      <h1>The page you were looking for doesn't exist.</h1>
-      <p>You may have mistyped the address or the page may have moved.</p>
-    </div>
-    <p>If you are the application owner check the logs for more information.</p>
+<body>
+<div class="jewellery-box">
+  <input id="open" type="checkbox" checked="checked">
+  <label class="open" for="open"></label>
+  <div class="bottom"></div>
+  <div class="inner-top"></div>
+  <div class="inner-bottom"></div>
+  <div class="text">Page not found!</div>
+  <div class="diamond-ring">
+    <div class="diamond"></div>
+    <div class="band"></div>
+    <div class="inner"></div>
+    <div class="details"></div>
   </div>
+</div>
 </body>
 </html>

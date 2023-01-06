@@ -13,7 +13,7 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   </head>
 
-  <body class="<%= @current_site.try(:body_class) %>">
+  <body class="<%= @current_site.try(:body_class) %> bg-light">
   <% flash.each do |type, message| %>
     <div class="alert alert-<%= type %>">
       <%= message %>
