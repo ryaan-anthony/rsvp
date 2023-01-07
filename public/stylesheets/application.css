@@ -43,7 +43,18 @@ hr {
 
 
 /* Custom components */
-img.payment { height: 2rem; }
+.divider {
+    height: 6rem;
+    background-image: url(/assets/divider.png);
+    content: " ";
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+img.payment {
+    height: 2rem;
+}
 
 .attending-yes:checked ~ label {
     color: var(--bs-success);
@@ -68,8 +79,42 @@ body.site-main .btn
     font-family: 'Abril Fatface', serif;
 }
 
+body.site-main h1:before {
+    background-image: url(/assets/welcome-left.png);
+    content: ' ';
+    -webkit-background-size: contain;
+    background-size: contain;
+    background-repeat: no-repeat;
+    -webkit-background-position: center;
+    background-position: left;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1em;
+    height: 3em;
+    margin-top: -10%;
+}
+body.site-main h1:after {
+    background-image: url(/assets/welcome-right.png);
+    content: ' ';
+    -webkit-background-size: contain;
+    background-size: contain;
+    background-repeat: no-repeat;
+    -webkit-background-position: center;
+    background-position: right;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1em;
+    height: 3em;
+    margin-top: -10%;
+
+}
 body.site-main h1 {
     font-size: 4.5rem;
+    position: relative;
+    max-width: 8em;
+    margin: 0 auto;
 }
 
 body.site-main .welcome-container {
