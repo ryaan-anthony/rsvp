@@ -14,6 +14,7 @@ class Ability
 
     # Admin only options
     return unless Site.find_by(site_id: site_id).has_role? :admin
+
     can :update, Guest
   end
 end

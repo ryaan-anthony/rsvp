@@ -1,0 +1,5 @@
+<p><%= @guest.full_name %> <%= @guest.status_message %></p>
+
+<% @guest.guests.each do |guest| %>
+  <p><%= guest.full_name %> <%= guest.status_message %></p>
+<% end %>

@@ -13,7 +13,7 @@
         background-position: 12.5rem top;
     }
     100% {
-        background-position: 12.5rem top;
+        background-position: 50rem top;
     }
 }
 .shimmer {
@@ -23,7 +23,7 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     -webkit-animation-name: shimmer;
-    -webkit-animation-duration: 3.2s;
+    -webkit-animation-duration: 3s;
     -webkit-animation-iteration-count: infinite;
     -webkit-background-size: 50rem 100%;
 }
@@ -57,6 +57,7 @@ img.payment { height: 2rem; }
 body.site-main {
     font-family: 'Playfair Display', serif;
 }
+
 body.site-main h1,
 body.site-main h2,
 body.site-main h3,

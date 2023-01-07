@@ -11,6 +11,21 @@ class Guest < ApplicationRecord
   scope :not_coming, -> { where(status: false) }
   scope :no_response, -> { where(status: nil) }
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
+  def status_message
+    case status
+    when true
+      'is coming!'
+    when false
+      'is not coming.'
+    else
+      'has not responded.'
+    end
+  end
+
   def guests_attributes
     guests.as_json(only: %i[first_name last_name status group])
   end

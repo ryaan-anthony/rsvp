@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MainHelper
   def days_to_go
     date = Date.parse('December 2nd, 2023')

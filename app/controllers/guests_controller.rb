@@ -14,6 +14,8 @@ class GuestsController < ApplicationController
     rsvp_params.each do |guest_id, request|
       guest = Guest.find(guest_id)
       guest.update!(status: request[:status])
+      # Only send alert for top level guest
+      GuestUpdateMailer.send_alert(guest).deliver unless guest.parent_id?
     end
 
     flash[:success] = 'Thank you! Your response has been recorded.'
