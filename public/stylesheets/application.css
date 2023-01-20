@@ -40,16 +40,36 @@ hr {
 .btn-light {
     --bs-btn-bg: #f1f1f1;
 }
+.navbar {
+    --bs-navbar-padding-y: 0;
+}
 
+.navbar-toggler {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 999;
+    background: var(--bs-secondary-bg-subtle);
+    height: 3rem;
+}
+
+.nav-item button {
+    padding: 0 1rem;
+}
 
 /* Custom components */
-.divider {
+.divider,
+.divider-top {
     height: 6rem;
     background-image: url(/assets/divider.png);
     content: " ";
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
+}
+
+.divider-top {
+    background-image: url(/assets/divider-top.png);
 }
 
 img.payment {

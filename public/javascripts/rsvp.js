@@ -1,15 +1,11 @@
 
 // When the RSVP button is clicked, show the RSVP form.
-var showRsvpForm = function(element) {
-    element.classList.add("d-none");
-    var rsvp = document.getElementById("rsvp");
-    rsvp.classList.remove("d-none");
-    rsvp.classList.add("fade-in");
-    var guest = document.getElementById("guest");
-    guest.focus();
-    var rsvp_header = document.getElementById("rsvp-header");
-    rsvp_header.scrollIntoView({ behavior: 'smooth' });
-};
+document.querySelectorAll('.nav-item a, .nav-item button').forEach(linkItem => {
+    linkItem.addEventListener('click', _ => {
+        window.scrollTo(0, 0);
+        $('#navbarSupportedContent').removeClass('show');
+    });
+});
 
 // When a name is submitted in the RSVP form, display best matches.
 var findGuest = function() {

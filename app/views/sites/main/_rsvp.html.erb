@@ -1,0 +1,43 @@
+<!-- RSVP Form -->
+<div id="rsvp-header" class="m-5"></div>
+<div id="rsvp" class="border rounded m-3 p-2">
+  <div id="rsvp-form-container">
+    <%= hidden_field_tag :guests, guests_data %>
+    <p><%= "Please enter the first and last name of one member of your party below." %></p>
+    <p>
+      <%= text_field_tag :guest, nil, class: 'form-control', placeholder: "First and Last Name" %>
+      <small id="name-required" class="d-none text-danger">Name is required!</small>
+    </p>
+    <!-- Submit form if enter pressed. -->
+    <script>
+        document.getElementById("guest").addEventListener("keypress", function(event) { if (event.key === "Enter") { findGuest(); } });
+    </script>
+    <%= button_tag "Continue", id: 'submit-rsvp', class: 'btn btn-primary fs-4', onclick: 'findGuest()' %>
+  </div>
+  <!-- No guests found alert -->
+  <div id="none-found" class="d-none alert alert-warning">Couldn't find you, sorry! Please <a href="mailto:us@angela-ryan.rsvp">contact us</a> to be added to the guest list.</div>
+
+  <!--Display matching guests -->
+  <div id="matching-guests" class="p-3 text-start"></div>
+
+  <!-- Guest RSVP Modal -->
+  <div id="update_rsvp_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Who will be attending?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <%= form_with url: "/rsvp", method: :post, id: 'rsvp-form' do %>
+            <div id="rsvp-form-body"></div>
+          <% end %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" onclick="saveRsvpChanges()">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

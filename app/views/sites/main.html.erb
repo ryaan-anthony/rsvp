@@ -1,6 +1,3 @@
-<!--<div class="welcome-container">-->
-  <!--<div class="welcome-banner"></div>-->
-<!--</div>-->
 <div class="container text-center py-5">
   <!-- Welcome text -->
   <h1>Angela <small class="fs-4">&</small> Ryan</h1>
@@ -9,85 +6,57 @@
     Are Getting Married!
     <i class="bi bi-dash-lg fs-1 align-text-top"></i>
   </h2>
-  <h2>Saturday, December 2nd</h2>
-  <h3><a href="https://goo.gl/maps/PuU4d5M4VLqQwxm28" target="_blank"><i class="bi bi-globe-americas"></i> World Cafe Live <i class="bi bi-music-note-beamed"></i></a></h3>
-  <h3>Philadelphia, PA</h3>
-  <h4 class="shimmer"><%= days_to_go %></h4>
 
-  <!-- RSVP Form -->
-  <div id="rsvp-header" class="m-5"></div>
-  <%= button_tag "RSVP", class: 'btn btn-danger fs-1 px-5', onclick: 'showRsvpForm(this)' %>
-  <div id="rsvp" class="border rounded m-3 p-2 d-none">
-    <div id="rsvp-form-container">
-        <%= hidden_field_tag :guests, guests_data %>
-        <p><%= "Please enter the first and last name of one member of your party below." %></p>
-        <p>
-          <%= text_field_tag :guest, nil, class: 'form-control', placeholder: "First and Last Name" %>
-          <small id="name-required" class="d-none text-danger">Name is required!</small>
-        </p>
-        <!-- Submit form if enter pressed. -->
-        <script>
-            document.getElementById("guest").addEventListener("keypress", function(event) { if (event.key === "Enter") { findGuest(); } });
-        </script>
-        <%= button_tag "Continue", id: 'submit-rsvp', class: 'btn btn-primary fs-4', onclick: 'findGuest()' %>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="nav collapse navbar-collapse justify-content-center" id="navbarSupportedContent" role="tablist">
+      <ul class="navbar-nav mr-auto p-2">
+        <li class="nav-item" role="presentation">
+          <a class="nav-link fs-3 active" data-bs-toggle="tab" href="#nav-home" role="tab" aria-controls="settings" aria-selected="true">Home</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link fs-3" data-bs-toggle="tab" href="#nav-venue" role="tab" aria-controls="settings" aria-selected="false">Venue</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link fs-3" data-bs-toggle="tab" href="#nav-travel" role="tab" aria-controls="settings" aria-selected="false">Travel</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link fs-3" data-bs-toggle="tab" href="#nav-photos" role="tab" aria-controls="settings" aria-selected="false">Photos</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link fs-3" data-bs-toggle="tab" href="#nav-faqs" role="tab" aria-controls="settings" aria-selected="false">FAQS</a>
+        </li>
+        <li class="nav-item align-self-center" role="presentation">
+          <button class="btn btn-sm btn-danger fs-3" data-bs-toggle="tab" data-bs-target="#nav-rsvp" role="tab" aria-controls="settings" aria-selected="false">RSVP</button>
+        </li>
+      </ul>
     </div>
-    <!-- No guests found alert -->
-    <div id="none-found" class="d-none alert alert-warning">Couldn't find you, sorry! Please <a href="mailto:us@angela-ryan.rsvp">contact us</a> to be added to the guest list.</div>
+  </nav>
 
-    <!--Display matching guests -->
-    <div id="matching-guests" class="p-3 text-start"></div>
-
-    <!-- Guest RSVP Modal -->
-    <div id="update_rsvp_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Who will be attending?</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <%= form_with url: "/rsvp", method: :post, id: 'rsvp-form' do %>
-            <div id="rsvp-form-body"></div>
-            <% end %>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" onclick="saveRsvpChanges()">Save Changes</button>
-          </div>
-        </div>
-      </div>
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade active show" id="nav-home" role="tabpanel" aria-labelledby="home-tab">
+      <%= render 'sites/main/home' %>
+    </div>
+    <div class="tab-pane fade" id="nav-venue" role="tabpanel" aria-labelledby="venue-tab">
+      <%= render 'sites/main/venue' %>
+    </div>
+    <div class="tab-pane fade" id="nav-travel" role="tabpanel" aria-labelledby="travel-tab">
+      <%= render 'sites/main/travel' %>
+    </div>
+    <div class="tab-pane fade" id="nav-photos" role="tabpanel" aria-labelledby="photos-tab">
+      <%= render 'sites/main/photos' %>
+    </div>
+    <div class="tab-pane fade" id="nav-faqs" role="tabpanel" aria-labelledby="faqs-tab">
+      <%= render 'sites/main/faqs' %>
+    </div>
+    <div class="tab-pane fade" id="nav-rsvp" role="tabpanel" aria-labelledby="rsvp-tab">
+      <%= render 'sites/main/rsvp' %>
     </div>
   </div>
 
-  <!-- Our story! -->
-  <div class="divider m-3"></div>
-  <h3>TRUE STORY</h3>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-  <!-- Our photos! -->
-  <hr class="m-5"/>
-  <img class="img-fluid" src="/assets/engaged.jpeg" />
-
-  <!-- FAQS -->
-  <hr class="m-5"/>
-  <h3>FAQS</h3>
-
-  <h5>Is there parking nearby?</h5>
-  <p>There is ample street parking available and a parking garage for a fee.</p>
-
-  <h5>What time should I arrive?</h5>
-  <p>Doors open at 2:40pm. The ceremony starts promptly at 3pm.</p>
-
-  <h5>Are children allowed at the wedding?</h5>
-  <p>We respectfully ask that no children under the age of 12 attend the ceremony and reception.</p>
-
-  <h5>Need a hotel for the night?</h5>
-  <p>Discounted rooms are available at the <a href="https://www.loewshotels.com/philadelphia-hotel">Loews Philadelphia Hotel</a>. Book using group code <code>TULINO23</code>.</p>
-
-  <h5>Do you have a wedding registry?</h5>
-  <p>Cash gifts welcome — we’ll use them to make our honeymoon memorable!</p>
-  <p><a class="btn btn-sm btn-light border" href="https://venmo.com/u/ryan-tulino"><img class="payment" src="/assets/venmo.png"/></a></p>
-  <p><a class="btn btn-sm btn-light border" href="https://paypal.me/tulino23"><img class="payment" src="/assets/paypal.png"/></a></p>
 
   <hr class="m-5"/>
   <p>Made with <i class="bi bi-heart-fill text-danger"></i> in Philadelphia</p>
