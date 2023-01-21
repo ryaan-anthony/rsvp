@@ -86,7 +86,7 @@ img.payment {
 
 /* Styles for main site */
 body.site-main {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Libre Baskerville', serif;
 }
 
 body.site-main h1,
@@ -96,7 +96,7 @@ body.site-main h4,
 body.site-main h5,
 body.site-main .btn
 {
-    font-family: 'Abril Fatface', serif;
+    font-family: 'Cormorant Garamond', serif;
 }
 
 body.site-main h1:before {

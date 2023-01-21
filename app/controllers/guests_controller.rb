@@ -11,11 +11,16 @@ class GuestsController < ApplicationController
   def rsvp
     authorize! :rsvp, Guest
 
+    guests = []
     rsvp_params.each do |guest_id, request|
       guest = Guest.find(guest_id)
       guest.update!(status: request[:status])
       # Only send alert for top level guest
-      GuestUpdateMailer.send_alert(guest).deliver unless guest.parent_id?
+      guests << guest unless guest.parent_id?
+    end
+    # Send email after all guests have been updated
+    guests.each do |guest|
+      GuestUpdateMailer.send_alert(guest).deliver
     end
 
     flash[:success] = 'Thank you! Your response has been recorded.'
