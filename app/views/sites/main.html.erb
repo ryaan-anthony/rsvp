@@ -24,10 +24,13 @@
           <a class="nav-link fs-3" data-bs-toggle="tab" href="#nav-travel" role="tab" aria-controls="settings" aria-selected="false">Travel</a>
         </li>
         <li class="nav-item" role="presentation">
-          <a class="nav-link fs-3" data-bs-toggle="tab" href="#nav-registry" role="tab" aria-controls="settings" aria-selected="false">Registry</a>
+          <a class="nav-link fs-3" data-bs-toggle="tab" href="#nav-todo" role="tab" aria-controls="settings" aria-selected="false">Things to do</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link fs-3" target="_blank" href="https://www.zola.com/registry/aqrt">Registry</a>
         </li>
         <li class="nav-item align-self-center" role="presentation">
-          <button class="btn btn-sm btn-danger fs-3 mx-1" data-bs-toggle="tab" data-bs-target="#nav-rsvp" role="tab" aria-controls="settings" aria-selected="false">RSVP</button>
+          <button class="btn btn-sm btn-danger fs-3 m-2" data-bs-toggle="tab" data-bs-target="#nav-rsvp" role="tab" aria-controls="settings" aria-selected="false">RSVP</button>
         </li>
       </ul>
     </div>
@@ -43,8 +46,8 @@
     <div class="tab-pane fade" id="nav-travel" role="tabpanel" aria-labelledby="travel-tab">
       <%= render 'sites/main/travel' %>
     </div>
-    <div class="tab-pane fade" id="nav-registry" role="tabpanel" aria-labelledby="registry-tab">
-      <%= render 'sites/main/registry' %>
+    <div class="tab-pane fade" id="nav-todo" role="tabpanel" aria-labelledby="todo-tab">
+      <%= render 'sites/main/todo' %>
     </div>
     <div class="tab-pane fade" id="nav-rsvp" role="tabpanel" aria-labelledby="rsvp-tab">
       <%= render 'sites/main/rsvp' %>
