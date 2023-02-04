@@ -42,7 +42,14 @@ hr {
 }
 .navbar {
     --bs-navbar-padding-y: 0;
+    --bs-navbar-nav-link-padding-x: 1.5rem;
 }
+@media (min-width: 992px) {
+    .nav-link.fs-3 {
+        font-size: 1.25rem!important;
+    }
+}
+
 
 .navbar-toggler {
     position: fixed;
@@ -108,10 +115,10 @@ body.site-main h1:before {
     -webkit-background-position: center;
     background-position: left;
     position: absolute;
-    top: 0;
+    top: 2rem;
     left: 0;
     width: 1em;
-    height: 3em;
+    height: 10rem;
     margin-top: -10%;
 }
 body.site-main h1:after {
@@ -123,32 +130,19 @@ body.site-main h1:after {
     -webkit-background-position: center;
     background-position: right;
     position: absolute;
-    top: 0;
+    top: 2rem;
     right: 0;
     width: 1em;
-    height: 3em;
+    height: 10rem;
     margin-top: -10%;
 
 }
 body.site-main h1 {
-    font-size: 4.5rem;
+    font-size: 4rem;
     position: relative;
     max-width: 8em;
     margin: 0 auto;
-}
-
-body.site-main .welcome-container {
-    height: 500px;
-    position: relative;
-}
-
-body.site-main .welcome-container .welcome-banner {
-    background-image: url(/assets/welcome-banner.jpeg);
-    background-size: cover;
-    background-position: center center;
-    position: absolute;
-    width: 100%;
-    height: 100%;
+    line-height: 1.5;
 }
 
 /* Styles for admin site */
