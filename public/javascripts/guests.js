@@ -9,9 +9,10 @@ var isSelected = function(status, expected) {
 var renderGuests = function() {
     var guests_data = document.getElementById("guests_data");
     var guest_list = document.getElementById("guest_list");
-    guest_list.innerHTML = `<tr><th>Name</th><th>Group</th><th>RSVP</th><th></th></tr>`;
+    guest_list.innerHTML = `<thead><tr><th>Name</th><th>Group</th><th>RSVP</th><th></th></tr></thead>`;
+    var tbody = '';
     JSON.parse(guests_data.value).forEach(function(guest, index) {
-        guest_list.innerHTML += `<tr class="align-middle">
+        tbody += `<tr class="align-middle">
                                 <td>${guest.first_name} ${guest.last_name}</td>
                                 <td class="row-group small">${guest.group}</td>
                                 <td class="row-status">
@@ -24,9 +25,9 @@ var renderGuests = function() {
                                 <td class="text-end"><button type="button" class="btn btn-secondary btn-sm remove" onclick="removeRow(${index})"><i class="bi bi-trash3"></i></button></td>
                             </tr>`;
         guest.guests_attributes.forEach(function(element, idx){
-            guest_list.innerHTML += `<tr class="align-middle table-warning">
-                                <td>${element.first_name} ${element.last_name}</td>
-                                <td class="row-group small">${element.group}</td>
+            tbody += `<tr class="align-middle text-muted">
+                                <td>&#x21B3; ${element.first_name} ${element.last_name}</td>
+                                <td class="row-group small">-</td>
                                 <td class="row-status">
                                     <select class="form-select form-select-sm" onchange="updateRsvp(this, ${index}, ${idx})">
                                         <option value="" ${isSelected(element.status, null)}>No Response</option>
@@ -38,6 +39,7 @@ var renderGuests = function() {
                             </tr>`;
         });
     });
+    guest_list.innerHTML += `<tbody>${tbody}</tbody>`;
 }();
 
 var addRow = function() {

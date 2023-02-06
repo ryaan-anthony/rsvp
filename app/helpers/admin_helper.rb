@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module AdminHelper
-  def guests_data
+  def guests_data_admin
     Guest.parents.as_json(
       only: %i[first_name last_name status group],
       methods: :guests_attributes

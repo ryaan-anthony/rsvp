@@ -5,7 +5,7 @@ class Guest < ApplicationRecord
   has_many :guests, foreign_key: :parent_id
   accepts_nested_attributes_for :guests
   validates :first_name, presence: true
-  validates :last_name, presence: true
+  # validates :last_name, presence: true
   scope :parents, -> { where(parent_id: nil) }
   scope :coming, -> { where(status: true) }
   scope :not_coming, -> { where(status: false) }

@@ -1,23 +1,4 @@
 <div class="container">
   <p class="text-end"><a href="<%= login_path %>">Back to login</a></p>
-  <nav>
-    <div class="nav nav-pills flex-column flex-sm-row" id="nav-tab" role="tablist">
-      <button class="nav-link active" id="nav-guests-tab" data-bs-toggle="tab" data-bs-target="#nav-guests" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Guest list</button>
-      <button class="nav-link" id="nav-story-tab"         data-bs-toggle="tab" data-bs-target="#nav-story" type="button" role="tab" aria-controls="nav-story" aria-selected="false">Our Story</button>
-      <button class="nav-link" id="nav-photos-tab"        data-bs-toggle="tab" data-bs-target="#nav-photos" type="button" role="tab" aria-controls="nav-photos" aria-selected="false">Photos</button>
-      <button class="nav-link" id="nav-faq-tab"           data-bs-toggle="tab" data-bs-target="#nav-faq" type="button" role="tab" aria-controls="nav-faq" aria-selected="false">FAQ</button>
-      <button class="nav-link" id="nav-locations-tab"     data-bs-toggle="tab" data-bs-target="#nav-locations" type="button" role="tab" aria-controls="nav-locations" aria-selected="false">Things to do</button>
-      <button class="nav-link" id="nav-notifications-tab"      data-bs-toggle="tab" data-bs-target="#nav-notifications" type="button" role="tab" aria-controls="nav-notifications" aria-selected="false" disabled>Notifications</button>
-    </div>
-  </nav>
-  <div class="tab-content mt-2" id="nav-tabContent">
-    <div class="tab-pane fade show active" id="nav-guests" role="tabpanel" aria-labelledby="nav-guests-tab" tabindex="0">
-      <%= render 'sites/admin/guests' %>
-    </div>
-    <div class="tab-pane fade" id="nav-story" role="tabpanel" aria-labelledby="nav-story-tab" tabindex="0">...</div>
-    <div class="tab-pane fade" id="nav-photos" role="tabpanel" aria-labelledby="nav-photos-tab" tabindex="0">...</div>
-    <div class="tab-pane fade" id="nav-faq" role="tabpanel" aria-labelledby="nav-faq-tab" tabindex="0">...</div>
-    <div class="tab-pane fade" id="nav-locations" role="tabpanel" aria-labelledby="nav-locations-tab" tabindex="0">...</div>
-    <div class="tab-pane fade" id="nav-notifications" role="tabpanel" aria-labelledby="nav-notifications-tab" tabindex="0">...</div>
-  </div>
+  <%= render 'sites/admin/guests' %>
 </div>
