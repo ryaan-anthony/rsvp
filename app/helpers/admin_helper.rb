@@ -9,12 +9,13 @@ module AdminHelper
   end
 
   def groups
-    ["Angela's Family",
-     "Ryan's Family",
-     "Angela's Friends",
-     "Ryan's Friends",
-     "Angela's Family Friends",
-     "Ryan's Family Friends"
+    [
+      "Angela's Family",
+      "Ryan's Family",
+      "Angela's Friends",
+      "Ryan's Friends",
+      "Angela's Family Friends",
+      "Ryan's Family Friends"
     ]
   end
 
