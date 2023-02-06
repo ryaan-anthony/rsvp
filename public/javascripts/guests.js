@@ -27,7 +27,7 @@ var renderGuests = function() {
         guest.guests_attributes.forEach(function(element, idx){
             tbody += `<tr class="align-middle text-muted">
                                 <td>&#x21B3; ${element.first_name} ${element.last_name}</td>
-                                <td class="row-group small">-</td>
+                                <td class="row-group small hide-group">${element.group}</td>
                                 <td class="row-status">
                                     <select class="form-select form-select-sm" onchange="updateRsvp(this, ${index}, ${idx})">
                                         <option value="" ${isSelected(element.status, null)}>No Response</option>

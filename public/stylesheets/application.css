@@ -171,3 +171,8 @@ body.site-admin {
     color: #222;
     background: #f8f9fa;
 }
+
+.hide-group
+{
+    opacity: 0;
+}
