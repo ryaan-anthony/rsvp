@@ -88,7 +88,6 @@
       <img src="assets/gallery/PXL_20221217_164116828.jpeg" class="img-fluid rounded poppable my-2" title="Publix ❤️"/>
     </div>
   </div>
-
 </div>
 
 <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -98,21 +97,38 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <img src="" class="imagepreview" style="width: 100%;" >
-      </div>
-      <div class="modal-footer">
-        <p class="imagetitle"></p>
+        <div id="carouselExampleControls" class="carousel slide carousel-dark" data-bs-ride="carousel">
+          <div class="carousel-inner"></div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-
 <script>
     $(function() {
         $('.poppable').on('click', function() {
-            $('.imagepreview').attr('src', $(this).attr('src'));
-            $('.imagetitle').text($(this).attr('title') || '');
+            var selected = $(this);
+            console.log(selected);
+            $('.carousel-inner').empty();
+            $('.poppable').each(function(index){
+                var active = selected.attr('src') == $(this).attr('src');
+                $('.carousel-inner').append(`
+                <div class="carousel-item ${active ? 'active' : ''}">
+                    <img src="${$(this).attr('src')}" class="img-fluid imagepreview" />
+                    <p class="pt-2">${$(this).attr('title')}</p>
+                </div>
+                `);
+            });
+
             $('#imagemodal').modal('show');
         });
     });
