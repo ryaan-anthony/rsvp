@@ -1,0 +1,119 @@
+<!-- Photo Gallery -->
+<div class="container">
+  <div class="row py-4">
+    <div class="col-8">
+      <img src="assets/gallery/DSC_9339.jpg" class="img-fluid rounded poppable my-2" title="Beach day in January!"/>
+    </div>
+    <div class="col-4">
+      <img src="assets/gallery/DSC_9305.jpg" class="img-fluid rounded poppable my-2"/>
+      <img src="assets/gallery/DSC_9311.jpg" class="img-fluid rounded poppable my-2"/>
+    </div>
+  </div>
+
+  <div class="row py-4">
+    <div class="col-4">
+      <img src="assets/gallery/Angela_N_Ryan_Edit-9718.jpg" class="img-fluid rounded poppable my-2"/>
+      <img src="assets/gallery/DSC_9378.jpg" class="img-fluid rounded poppable my-2"/>
+    </div>
+    <div class="col-8"><img src="assets/gallery/Image 2-11-23 at 6.22 PM.jpg" class="img-fluid rounded poppable my-2"/></div>
+  </div>
+
+  <div class="row py-4">
+    <div class="col-sm"><img src="assets/gallery/Image 2-11-23 at 6.23 PM.jpg" class="img-fluid rounded poppable my-2"/></div>
+    <div class="col-sm"><img src="assets/gallery/Image 2-11-23 at 6.25 PM.jpg" class="img-fluid rounded poppable my-2"/></div>
+    <div class="col-sm"><img src="assets/gallery/Image 2-11-23 at 6.25 PM (1).jpg" class="img-fluid rounded poppable my-2"/></div>
+  </div>
+
+  <div class="row py-4">
+    <div class="col-4">
+      <img src="assets/gallery/Image 2-11-23 at 6.47 PM.jpg" class="img-fluid rounded poppable my-2"/>
+      <img src="assets/gallery/Image 2-11-23 at 6.48 PM.jpg" class="img-fluid rounded poppable my-2"/>
+    </div>
+    <div class="col-8"><img src="assets/gallery/Image 2-11-23 at 6.48 PM (1).jpg" class="img-fluid rounded poppable my-2"/></div>
+  </div>
+
+  <div class="row py-4">
+    <div class="col-6 col-md-4"><img src="assets/gallery/Image 2-11-23 at 7.16 PM.jpg" class="img-fluid rounded poppable my-2"/></div>
+    <div class="col-6 col-md-4"><img src="assets/gallery/Image 2-11-23 at 7.17 PM.jpg" class="img-fluid rounded poppable my-2"/></div>
+    <div class="col-6 col-md-4"><img src="assets/gallery/IMG_5401.jpg" class="img-fluid rounded poppable my-2"/></div>
+  </div>
+
+  <div class="row py-4">
+    <div class="col-6"><img src="assets/gallery/IMG_5485.jpg" class="img-fluid rounded poppable my-2"/></div>
+    <div class="col-6"><img src="assets/gallery/IMG_5551.jpg" class="img-fluid rounded poppable my-2"/></div>
+  </div>
+
+  <div class="row py-4">
+    <div class="col-sm">
+      <img src="assets/gallery/IMG_7354.jpg" class="img-fluid rounded poppable my-2"/>
+    </div>
+    <div class="col-sm">
+      <img src="assets/gallery/DSC_9426.jpg" class="img-fluid rounded poppable my-2"/>
+    </div>
+    <div class="col-sm">
+      <img src="assets/gallery/PXL_20211216_000918401.jpeg" class="img-fluid rounded poppable my-2"/>
+    </div>
+  </div>
+
+  <div class="row py-4">
+    <div class="col-4">
+      <img src="assets/gallery/PXL_20220101_045706394.jpeg" class="img-fluid rounded poppable my-2"/>
+      <img src="assets/gallery/PXL_20220116_182645695.jpeg" class="img-fluid rounded poppable my-2"/>
+    </div>
+    <div class="col-8"><img src="assets/gallery/PXL_20220818_231044436.jpeg" class="img-fluid rounded poppable my-2"/></div>
+  </div>
+
+  <div class="row py-4">
+    <div class="col-sm"><img src="assets/gallery/PXL_20220910_182745969.jpeg" class="img-fluid rounded poppable my-2"/></div>
+    <div class="col-sm"><img src="assets/gallery/PXL_20220929_171519885.jpeg" class="img-fluid rounded poppable my-2"/></div>
+  </div>
+
+  <div class="row py-4">
+    <div class="col-4">
+      <img src="assets/gallery/Image 2-11-23 at 6.20 PM.jpg" class="img-fluid rounded poppable my-2"/>
+      <img src="assets/gallery/Image 2-11-23 at 6.21 PM.jpg" class="img-fluid rounded poppable my-2"/>
+    </div>
+    <div class="col-8">
+      <img src="assets/gallery/PXL_20220416_224135464.jpeg" class="img-fluid rounded poppable my-2"/>
+    </div>
+  </div>
+
+  <div class="row py-4">
+    <div class="col">
+      <img src="assets/gallery/PXL_20230207_001319029.jpeg" class="img-fluid rounded poppable my-2"/>
+      <img src="assets/gallery/PXL_20221030_002306057.jpeg" class="img-fluid rounded poppable my-2"/>
+    </div>
+    <div class="col">
+      <img src="assets/gallery/PXL_20221015_174204844.jpeg" class="img-fluid rounded poppable my-2"/>
+      <img src="assets/gallery/PXL_20221217_164116828.jpeg" class="img-fluid rounded poppable my-2"/>
+    </div>
+  </div>
+
+</div>
+
+<div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <img src="" class="imagepreview" style="width: 100%;" >
+      </div>
+      <div class="modal-footer">
+        <p class="imagetitle"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+    $(function() {
+        $('.poppable').on('click', function() {
+            $('.imagepreview').attr('src', $(this).attr('src'));
+            $('.imagetitle').text($(this).attr('title') || '');
+            $('#imagemodal').modal('show');
+        });
+    });
+</script>

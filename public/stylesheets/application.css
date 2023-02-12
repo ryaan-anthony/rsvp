@@ -27,6 +27,9 @@
     -webkit-animation-iteration-count: infinite;
     -webkit-background-size: 50rem 100%;
 }
+.poppable {
+    cursor: grab;
+}
 
 /* Bootstrap overrides */
 .alert {
