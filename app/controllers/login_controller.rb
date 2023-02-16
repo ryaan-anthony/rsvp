@@ -8,7 +8,7 @@ class LoginController < ApplicationController
   def index; end
 
   def create
-    session[:site_id] = params.require(:passcode)
+    session[:site_id] = params.require(:passcode).downcase
     redirect_to :sites
   end
 end
