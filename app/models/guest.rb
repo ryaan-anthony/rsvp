@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Guest < ApplicationRecord
-  belongs_to :parent, class_name: 'Guest', optional: true, dependent: :destroy
-  has_many :guests, foreign_key: :parent_id
+  belongs_to :parent, class_name: 'Guest', optional: true
+  has_many :guests, foreign_key: :parent_id, dependent: :destroy
   accepts_nested_attributes_for :guests
   validates :first_name, presence: true
   # validates :last_name, presence: true

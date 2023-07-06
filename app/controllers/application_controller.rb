@@ -12,6 +12,6 @@ class ApplicationController < ActionController::Base
   end
 
   def current_site
-    @current_site ||= Site.where(site_id: site_id).first
+    @current_site ||= Site.where(site_id: site_id).first || Site.default
   end
 end

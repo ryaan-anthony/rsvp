@@ -6,9 +6,13 @@ class Ability
   def initialize(site_id)
     # Anyone can login
     can :login, Site, public: true
+
+    # Anyone can see the default site
+    can :show, Site, id: Site.default.id if site_id.nil?
+
     return unless site_id.present? && Site.exists?(site_id: site_id)
 
-    # Guests with passcode can
+    # Guests with passcode can view authorized site
     can :show, Site, site_id: site_id
     can :rsvp, Guest
 

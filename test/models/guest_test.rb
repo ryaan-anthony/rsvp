@@ -17,4 +17,11 @@ class GuestTest < ActiveSupport::TestCase
     guest.destroy
     assert_equal 0, Guest.count
   end
+
+  test 'deleting plus one will not remove other guests' do
+    guest = create(:guest_with_guests, plus_one: 2)
+    assert_equal 3, Guest.count
+    guest.guests.first.destroy
+    assert_equal 2, Guest.count
+  end
 end
