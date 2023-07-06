@@ -1,4 +1,4 @@
-FROM ruby:3
+FROM ruby:3.0-buster
 
 COPY . .
 
