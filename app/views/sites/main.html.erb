@@ -15,10 +15,10 @@
     <div class="nav collapse navbar-collapse justify-content-center" id="navbarSupportedContent" role="tablist">
       <ul class="navbar-nav mr-auto p-2">
         <li class="nav-item" role="presentation">
-          <a class="nav-link fs-3 active" data-bs-toggle="tab" href="#nav-home" role="tab" aria-controls="settings" aria-selected="true">Home</a>
+          <a class="nav-link fs-3 active" data-bs-toggle="tab" href="#nav-details" role="tab" aria-controls="settings" aria-selected="false">Details</a>
         </li>
         <li class="nav-item" role="presentation">
-          <a class="nav-link fs-3" data-bs-toggle="tab" href="#nav-venue" role="tab" aria-controls="settings" aria-selected="false">Venue</a>
+          <a class="nav-link fs-3" data-bs-toggle="tab" href="#nav-story" role="tab" aria-controls="settings" aria-selected="true">Our Story</a>
         </li>
         <li class="nav-item" role="presentation">
           <a class="nav-link fs-3" data-bs-toggle="tab" href="#nav-travel" role="tab" aria-controls="settings" aria-selected="false">Travel</a>
@@ -40,11 +40,11 @@
   </nav>
 
   <div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade active show" id="nav-home" role="tabpanel" aria-labelledby="home-tab">
-      <%= render 'sites/main/home' %>
+    <div class="tab-pane fade active show" id="nav-details" role="tabpanel" aria-labelledby="details-tab">
+      <%= render 'sites/main/details' %>
     </div>
-    <div class="tab-pane fade" id="nav-venue" role="tabpanel" aria-labelledby="venue-tab">
-      <%= render 'sites/main/venue' %>
+    <div class="tab-pane fade" id="nav-story" role="tabpanel" aria-labelledby="story-tab">
+      <%= render 'sites/main/story' %>
     </div>
     <div class="tab-pane fade" id="nav-travel" role="tabpanel" aria-labelledby="travel-tab">
       <%= render 'sites/main/travel' %>

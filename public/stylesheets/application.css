@@ -182,3 +182,13 @@ body.site-admin {
 {
     opacity: 0;
 }
+
+.ticket {
+    background-image: url(/assets/ticket.png);
+    -webkit-background-size: 60%;
+    background-size: 60%;
+    background-repeat: no-repeat;
+    -webkit-background-position: center;
+    background-position: center;
+    padding: 3em;
+}
