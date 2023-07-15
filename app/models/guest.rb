@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Guest < ApplicationRecord
+  enum meal_choice: %i[beef chicken fish]
   belongs_to :parent, class_name: 'Guest', optional: true
   has_many :guests, foreign_key: :parent_id, dependent: :destroy
   accepts_nested_attributes_for :guests
@@ -27,10 +28,10 @@ class Guest < ApplicationRecord
   end
 
   def guests_attributes
-    guests.as_json(only: %i[first_name last_name status group])
+    guests.as_json(only: %i[first_name last_name status group meal_choice])
   end
 
   def guests_attributes_rsvp
-    guests.as_json(only: %i[id first_name last_name status])
+    guests.as_json(only: %i[id first_name last_name status meal_choice])
   end
 end

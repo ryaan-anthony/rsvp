@@ -13,7 +13,7 @@ module MainHelper
 
   def guests_data
     Guest.parents.as_json(
-      only: %i[id first_name last_name status],
+      only: %i[id first_name last_name status meal_choice],
       methods: :guests_attributes_rsvp
     ).to_json
   end

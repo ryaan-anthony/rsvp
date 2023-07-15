@@ -148,15 +148,33 @@ var renderRsvpModal = function(guest) {
                               </div>
                               <div class="col">
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input attending-yes" type="radio" name="rsvp[${person.id}][status]" id="rsvp-yes-${i}" value="1" ${yes_checked}>
+                                  <input class="form-check-input attending-yes" type="radio" name="rsvp[${person.id}][status]" id="rsvp-yes-${i}" value="1" ${yes_checked} onclick="showMealChoice(${i})">
                                   <label class="form-check-label" for="rsvp-yes-${i}">Yes</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input attending-no" type="radio" name="rsvp[${person.id}][status]" id="rsvp-no-${i}" value="0" ${no_checked}>
+                                  <input class="form-check-input attending-no" type="radio" name="rsvp[${person.id}][status]" id="rsvp-no-${i}" value="0" ${no_checked} onclick="hideMealChoice(${i})">
                                   <label class="form-check-label" for="rsvp-no-${i}">No</label>
                                 </div>
                               </div>
                             </div>`;
+        var beef_checked = person.meal_choice === 'beef' ? 'checked' : '';
+        var chicken_checked = person.meal_choice === 'chicken' ? 'checked' : '';
+        var fish_checked = person.meal_choice === 'fish' ? 'checked' : '';
+        modal_body.innerHTML += `<div id="meal-choice-${i}" class="mb-3 pb-3 border-bottom collapse ${yes_checked ? "show" : ""}">
+                                    <span class="px-2 text-muted">Dinner choice:</span>
+                                    <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" name="rsvp[${person.id}][meal_choice]" id="rsvp-beef-${i}" value="beef" ${beef_checked}>
+                                      <label class="form-check-label" for="rsvp-beef-${i}">Beef</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" name="rsvp[${person.id}][meal_choice]" id="rsvp-chicken-${i}" value="chicken" ${chicken_checked}>
+                                      <label class="form-check-label" for="rsvp-chicken-${i}">Chicken</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" name="rsvp[${person.id}][meal_choice]" id="rsvp-fish-${i}" value="fish" ${fish_checked}>
+                                      <label class="form-check-label" for="rsvp-fish-${i}">Fish</label>
+                                    </div>
+                                 </div>`;
     }
     $('#update_rsvp_modal').modal('show');
 };
@@ -164,4 +182,12 @@ var renderRsvpModal = function(guest) {
 var saveRsvpChanges = function() {
     var rsvp_form = document.getElementById("rsvp-form");
     rsvp_form.submit();
+};
+
+var showMealChoice = function(index) {
+  $(`#meal-choice-${index}`).show();
+};
+
+var hideMealChoice = function(index) {
+  $(`#meal-choice-${index}`).hide();
 };
