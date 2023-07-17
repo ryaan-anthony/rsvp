@@ -24,11 +24,35 @@ class Guest < ApplicationRecord
   def status_message
     case status
     when true
-      'is coming!'
+      'is coming'
     when false
       'is not coming.'
     else
       'has not responded.'
+    end
+  end
+
+  def dinner_choice
+    case meal_choice
+      when 'beef'
+        '(Dinner Choice: Beef)'
+      when 'chicken'
+        '(Dinner Choice: Chicken)'
+      when 'fish'
+        '(Dinner Choice: Fish)'
+      else
+        ''
+    end
+  end
+
+  def welcome_party_message
+    case welcome_party
+    when true
+      'and will come to the Welcome Party!'
+    when false
+      'but will not come to the Welcome Party.'
+    else
+      ''
     end
   end
 

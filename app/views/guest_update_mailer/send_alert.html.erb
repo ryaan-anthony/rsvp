@@ -1,5 +1,5 @@
-<p><%= @guest.full_name %> <%= @guest.status_message %></p>
+<p><%= @guest.full_name %> <%= @guest.status_message %> <%= @guest.welcome_party_message %> <%= @guest.dinner_choice %></p>
 
 <% @guest.guests.each do |guest| %>
-  <p><%= guest.full_name %> <%= guest.status_message %></p>
+  <p><%= guest.full_name %> <%= guest.status_message %> <%= guest.welcome_party_message %> <%= @guest.dinner_choice %></p>
 <% end %>
