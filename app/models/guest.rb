@@ -24,7 +24,7 @@ class Guest < ApplicationRecord
   def status_message
     case status
     when true
-      'is coming'
+      'is coming to the Wedding'
     when false
       'is not coming.'
     else
@@ -48,9 +48,9 @@ class Guest < ApplicationRecord
   def welcome_party_message
     case welcome_party
     when true
-      'and will come to the Welcome Party!'
+      'and the Welcome Party!'
     when false
-      'but will not come to the Welcome Party.'
+      'but not the Welcome Party.'
     else
       ''
     end
