@@ -7,14 +7,14 @@ class Ability
     # Anyone can login
     can :login, Site, public: true
 
-    # Anyone can see the default site
+    # Anyone can see the default site and rsvp
     can :show, Site, id: Site.default.id if site_id.nil?
+    can :rsvp, Guest
 
     return unless site_id.present? && Site.exists?(site_id: site_id)
 
     # Guests with passcode can view authorized site
     can :show, Site, site_id: site_id
-    can :rsvp, Guest
 
     # Admin only options
     return unless Site.find_by(site_id: site_id).has_role? :admin

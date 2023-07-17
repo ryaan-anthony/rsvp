@@ -14,7 +14,7 @@ class GuestsController < ApplicationController
     guests = []
     rsvp_params.each do |guest_id, request|
       guest = Guest.find(guest_id)
-      guest.update!(status: request[:status], meal_choice: request[:meal_choice])
+      guest.update!(request.permit(:status, :meal_choice, :welcome_party))
       # Only send alert for top level guest
       guests << guest unless guest.parent_id?
     end

@@ -12,6 +12,11 @@ class Guest < ApplicationRecord
   scope :not_coming, -> { where(status: false) }
   scope :no_response, -> { where(status: nil) }
 
+  before_save do
+    self.welcome_party = nil unless status
+    self.meal_choice = nil unless status
+  end
+
   def full_name
     "#{first_name} #{last_name}"
   end
@@ -28,10 +33,10 @@ class Guest < ApplicationRecord
   end
 
   def guests_attributes
-    guests.as_json(only: %i[first_name last_name status group meal_choice])
+    guests.as_json(only: %i[first_name last_name status group meal_choice welcome_party])
   end
 
   def guests_attributes_rsvp
-    guests.as_json(only: %i[id first_name last_name status meal_choice])
+    guests.as_json(only: %i[id first_name last_name status meal_choice welcome_party])
   end
 end
