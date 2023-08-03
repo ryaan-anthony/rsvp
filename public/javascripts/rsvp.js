@@ -176,7 +176,7 @@ var renderRsvpModal = function(guest) {
                                       </div>
                                       <div class="form-check col-2">
                                         <input class="form-check-input" type="radio" name="rsvp[${person.id}][meal_choice]" id="rsvp-fish-${i}" value="fish" ${fish_checked}>
-                                        <label class="form-check-label small" for="rsvp-fish-${i}">Fish</label>
+                                        <label class="form-check-label small" for="rsvp-fish-${i}">Salmon</label>
                                       </div>
                                     </div>
                                     <div class="row">

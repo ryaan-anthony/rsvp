@@ -39,7 +39,7 @@ class Guest < ApplicationRecord
       when 'chicken'
         '(Dinner Choice: Chicken)'
       when 'fish'
-        '(Dinner Choice: Fish)'
+        '(Dinner Choice: Salmon)'
       else
         ''
     end
