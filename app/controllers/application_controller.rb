@@ -3,6 +3,11 @@
 class ApplicationController < ActionController::Base
   add_flash_types :info, :warning, :danger
 
+  rescue_from StandardError do |exception|
+    ExceptionMailer.send_alert(exception, request).deliver
+    raise exception
+  end
+
   def current_ability
     @current_ability ||= Ability.new(site_id)
   end

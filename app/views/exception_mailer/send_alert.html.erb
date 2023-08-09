@@ -1,0 +1,22 @@
+<h1><%= @exception.class %></h1>
+<p><%= @exception.full_message %></p>
+
+<h3>Backtrace:</h3>
+
+<% @exception.backtrace.each do |trace| %>
+  <p><code><%= trace %></code></p>
+<% end %>
+
+<h3>Request:</h3>
+
+<p><code>IP: <%= @request.ip %></code></p>
+<p><code>Method: <%= @request.method %></code></p>
+<p><code>URL: <%= @request.original_url %></code></p>
+<p><code>Post Data: <%= @request.raw_post %></code></p>
+
+<h3>Headers:</h3>
+
+<% @request.headers.to_h.each do |key, value| %>
+<% next unless [String, TrueClass, FalseClass, Symbol, Float, Integer, Hash, Array].include? value.class %>
+  <p><code><%= key %> = <%= value %></code></p>
+<% end %>
