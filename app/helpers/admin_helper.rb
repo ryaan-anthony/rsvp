@@ -8,6 +8,8 @@ module AdminHelper
   end
 
   def match_filters?(guest)
+    return true if filter_params.empty?
+
     # partial name match
     if filter_params['name_filter'].length > 3
       return unless guest.full_name.downcase.include? filter_params['name_filter'].downcase
