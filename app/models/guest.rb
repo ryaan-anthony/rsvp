@@ -11,6 +11,7 @@ class Guest < ApplicationRecord
   scope :coming, -> { where(status: true) }
   scope :not_coming, -> { where(status: false) }
   scope :no_response, -> { where(status: nil) }
+  scope :welcome_party, -> { where(welcome_party: true) }
 
   before_save do
     self.welcome_party = nil unless status

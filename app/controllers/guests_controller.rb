@@ -27,18 +27,6 @@ class GuestsController < ApplicationController
     redirect_to '/'
   end
 
-  def update
-    authorize! :update, Guest
-
-    ActiveRecord::Base.transaction do
-      Guest.destroy_all
-      Guest.create!(guests_params)
-    end
-
-    flash[:success] = 'Guest list has been updated!'
-    redirect_to '/'
-  end
-
   private
 
   def rsvp_params

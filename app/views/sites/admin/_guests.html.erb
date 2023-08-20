@@ -1,68 +1,54 @@
-<%= form_with url: guests_path, id: 'guests' do |form| %>
-  <%= form.hidden_field :guests_data, value: guests_data_admin %>
-<% end %>
-
-<div id="guests-summary" class="row text-center border mb-3 p-3">
-  <div class="col">
-    <span class="fs-1"><%= Guest.count %></span>
-    <div class="small">Invited</div>
-  </div>
-  <div class="col">
-    <span class="fs-1"><%= Guest.coming.count %></span>
-    <div class="small">Coming</div>
-  </div>
-  <div class="col">
-    <span class="fs-1"><%= Guest.not_coming.count %></span>
-    <div class="small">Not Coming</div>
-  </div>
-  <div class="col">
-    <span class="fs-1"><%= Guest.no_response.count %></span>
-    <div class="small">No Response</div>
-  </div>
-</div>
-
-<div id="guests-table" class="row">
-  <div class="col">
-    <%= select_tag :group_filter, options_for_select(filter_groups), class: 'form-select form-select-sm', onchange: 'filterByGroup()' %>
-  </div>
-  <div class="col">
-    <%= select_tag :status_filter, options_for_select(filter_status), class: 'form-select form-select-sm', onchange: 'filterByStatus()' %>
-  </div>
-  <div class="col">
-    <button type="button" class="btn btn-primary btn-sm float-end" data-bs-toggle="modal" data-bs-target="#new_guest_form">Add Guests</button>
-  </div>
-  <table id="guest_list" class="table table-hover"></table>
-</div>
-
-<!-- Modal -->
-<div id="new_guest_form" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">New Guest</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="mb-2">
-          <%= select_tag :group, options_for_select(select_groups), class: 'form-select' %>
-        </div>
-        <div class="row mb-2">
-          <div class="col">
-            <%= text_field_tag :first_name, nil, class: 'form-control', placeholder: "First Name", id: 'new-guest-name' %>
-          </div>
-          <div class="col">
-            <%= text_field_tag :last_name, nil, class: 'form-control', placeholder: "Last Name" %>
-          </div>
-        </div>
-        <div id="additional-guests" class="mb-2"></div>
-        <%= button_tag 'Add plus one', class: 'btn btn-dark add btn-sm', type: :button, onclick: 'additionalGuest()' %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onclick="addRow()">Add to guest list</button>
-      </div>
+<div class="row">
+  <div class="row text-center border mb-3 p-3">
+    <div class="col">
+      <div class="small">Displaying...</div>
+      <span class="fs-2"><%= guest_collection.count %> of <%= Guest.count %> Guests</span>
     </div>
   </div>
-</div>
 
-<%= javascript_include_tag 'guests' %>
+  <form method="get" action="/">
+    <table id="guest_list" class="table table-hover">
+      <thead>
+      <tr>
+        <th>
+          Name
+          <%= text_field_tag :name_filter, params[:name_filter], class: 'form-control form-control-sm', placeholder: 'Filter by name', onchange: 'this.form.submit()' %>
+        </th>
+        <th>
+          Group
+          <%= select_tag :group_filter, options_for_select(filter_groups, params[:group_filter]), class: 'form-select form-select-sm', onchange: 'this.form.submit()' %>
+        </th>
+        <th>
+          RSVP
+          <%= select_tag :rsvp_filter, options_for_select(filter_status, params[:rsvp_filter]), class: 'form-select form-select-sm', onchange: 'this.form.submit()' %>
+        </th>
+        <th>
+          Welcome Party
+          <%= select_tag :welcome_filter, options_for_select(filter_status, params[:welcome_filter]), class: 'form-select form-select-sm', onchange: 'this.form.submit()' %>
+        </th>
+        <th>
+          Dinner
+          <%= select_tag :dinner_filter, options_for_select(filter_dinner, params[:dinner_filter]), class: 'form-select form-select-sm', onchange: 'this.form.submit()' %>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <% guest_collection.each do |guest| %>
+        <tr class="guest align-middle <%= guest.parent_id? ? 'text-muted' : '' %>">
+          <td><%= guest.first_name %> <%= guest.last_name %></td>
+          <td class="row-group small">
+            <% if guest.parent_id? %>
+            <span class="small">(Guest of <%= guest.parent.full_name %>)</span>
+            <% else %>
+              <%= guest.group %>
+            <% end%>
+          </td>
+          <td class="row-status"><%= humanize guest.status %></td>
+          <td class="row-status"><%= humanize guest.welcome_party %></td>
+          <td class="row-status"><%= guest.meal_choice&.capitalize || 'No Response' %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </form>
+</div>

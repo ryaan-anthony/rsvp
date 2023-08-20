@@ -5,6 +5,5 @@ Rails.application.routes.draw do
   get 'login', to: 'login#index'
   post 'login', to: 'login#create'
   get 'qr', to: 'login#create'
-  post 'guests', to: 'guests#update'
   post 'rsvp', to: 'guests#rsvp'
 end
