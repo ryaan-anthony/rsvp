@@ -42,7 +42,11 @@ module AdminHelper
 
     # match food choice
     if filter_params['dinner_filter'].present?
-      return unless guest.meal_choice == filter_params['dinner_filter']
+      if filter_params['dinner_filter'] == 'null'
+        return unless guest.meal_choice.nil?
+      else
+        return unless guest.meal_choice == filter_params['dinner_filter']
+      end
     end
 
     # passes all checks
