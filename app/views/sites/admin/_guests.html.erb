@@ -7,9 +7,13 @@
   </div>
 
   <form method="get" action="/">
-    <table id="guest_list" class="table table-hover">
+    <table class="table table-hover">
       <thead>
       <tr>
+        <th>
+          Table #
+          <%= select_tag :table_filter, options_for_select(filter_tables, params[:table_filter]), class: 'form-select form-select-sm', onchange: 'this.form.submit()' %>
+        </th>
         <th>
           Name
           <%= text_field_tag :name_filter, params[:name_filter], class: 'form-control form-control-sm', placeholder: 'Filter by name', onchange: 'this.form.submit()' %>
@@ -32,9 +36,19 @@
         </th>
       </tr>
       </thead>
+    </table>
+  </form>
+    <table class="table table-hover">
       <tbody>
       <% guest_collection.each do |guest| %>
         <tr class="guest align-middle <%= guest.parent_id? ? 'text-muted' : '' %>">
+          <td>
+            <form method="post" action="assign_table">
+              <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+              <%= hidden_field_tag :guest_id, guest.id %>
+              <%= select_tag :table, options_for_select(assign_tables, guest.table), class: 'form-select form-select-sm', onchange: 'this.form.submit()' %>
+            </form>
+          </td>
           <td><%= guest.first_name %> <%= guest.last_name %></td>
           <td class="row-group small">
             <% if guest.parent_id? %>
@@ -50,5 +64,4 @@
       <% end %>
       </tbody>
     </table>
-  </form>
 </div>

@@ -2,7 +2,7 @@
 
 module AdminHelper
   def guest_collection
-    @guest_collection ||= Guest.all.map do |guest|
+    @guest_collection ||= Guest.order(created_at: :asc).map do |guest|
       guest if match_filters?(guest)
     end.compact
   end
@@ -13,6 +13,11 @@ module AdminHelper
     # partial name match
     if filter_params['name_filter'].length > 3
       return unless guest.full_name.downcase.include? filter_params['name_filter'].downcase
+    end
+
+    # match table
+    if filter_params['table_filter'].present?
+      return unless guest.table == filter_params['table_filter'].to_i
     end
 
     # match group
@@ -54,7 +59,7 @@ module AdminHelper
   end
 
   def filter_params
-    params.permit(:name_filter, :group_filter, :rsvp_filter, :welcome_filter, :dinner_filter)
+    params.permit(:table_filter, :name_filter, :group_filter, :rsvp_filter, :welcome_filter, :dinner_filter)
   end
 
   def humanize(boolean)
@@ -81,6 +86,14 @@ module AdminHelper
 
   def select_groups
     [['Select a group', nil]] + groups
+  end
+
+  def filter_tables
+    [['Select a table', nil]] + (1..20).to_a
+  end
+
+  def assign_tables
+    [['None', nil]] + (1..20).to_a
   end
 
   def filter_groups

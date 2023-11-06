@@ -8,6 +8,17 @@ class GuestsController < ApplicationController
     redirect_to '/', danger: exception.message
   end
 
+  def assign_table
+    authorize! :assign_table, Guest
+
+    table = params.fetch(:table)
+    guest = Guest.find(params.fetch(:guest_id))
+    guest.update!(table: table)
+
+    flash[:success] = "#{guest.full_name} has been added to table #{table}."
+    redirect_back fallback_location: '/'
+  end
+
   def rsvp
     authorize! :rsvp, Guest
 

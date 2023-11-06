@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   post 'login', to: 'login#create'
   get 'qr', to: 'login#create'
   post 'rsvp', to: 'guests#rsvp'
+  post 'assign_table', to: 'guests#assign_table'
 end
