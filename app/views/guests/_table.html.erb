@@ -1,0 +1,52 @@
+<% guests = Guest.coming.where(table: table_no) %>
+<table class="table col border m-1">
+  <thead class="text-center">
+  <tr>
+    <th colspan="5"><a href="<%= table_view_path(table_no) %>">Table <%= table_no %></a> <small class="text-muted">(<%= guests.count %> guests)</small></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% guests.order(table_pos: :asc).each do |guest| %>
+    <tr class="align-items-center">
+      <td>
+        <form method="post" action="<%= assign_table_path %>">
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+          <%= hidden_field_tag :guest_id, guest.id %>
+          <%= hidden_field_tag :table, nil %>
+          <button type="submit" class="border-0 bg-transparent text-danger">
+            X
+          </button>
+        </form>
+      </td>
+      <td><%= guest.first_name %></td>
+      <td><%= guest.last_name %></td>
+      <td>
+        <% if guest.table_pos > 1 %>
+          <form method="post" action="<%= assign_table_pos_path %>">
+            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+            <%= hidden_field_tag :guest_id, guest.id %>
+            <%= hidden_field_tag :sort, :desc %>
+            <%= hidden_field_tag :table_pos, guest.table_pos - 1 %>
+            <button type="submit" class="border-0 bg-transparent text-primary">
+              &#8593;
+            </button>
+          </form>
+        <% end %>
+      </td>
+      <td>
+        <% if guest.table_pos < guests.count %>
+          <form method="post" action="<%= assign_table_pos_path %>">
+            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+            <%= hidden_field_tag :guest_id, guest.id %>
+            <%= hidden_field_tag :sort, :asc %>
+            <%= hidden_field_tag :table_pos, guest.table_pos + 1 %>
+            <button type="submit" class="border-0 bg-transparent text-primary">
+              &#8595;
+            </button>
+          </form>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

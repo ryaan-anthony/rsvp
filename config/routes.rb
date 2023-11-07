@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   post 'assign_table', to: 'guests#assign_table'
   post 'assign_table_pos', to: 'guests#assign_table_pos'
   get 'seating_chart', to: 'guests#seating_chart'
+  get 'seating_chart/:table_no', to: 'guests#table_view', as: 'table_view'
 end

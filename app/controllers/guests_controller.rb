@@ -15,6 +15,12 @@ class GuestsController < ApplicationController
     render 'seating_chart'
   end
 
+  def table_view
+    authorize! :table_view, Guest
+
+    render 'table_view'
+  end
+
   def assign_table_pos
     authorize! :assign_table_pos, Guest
 
@@ -36,7 +42,8 @@ class GuestsController < ApplicationController
 
     table = params.fetch(:table)
     guest = Guest.find(params.fetch(:guest_id))
-    guest.update!(table: table)
+    table_size = Guest.where(table: table).count
+    guest.update!(table: table, table_pos: table_size + 1)
 
     flash[:success] = "#{guest.full_name} has been added to table #{table}."
     redirect_back fallback_location: '/'
