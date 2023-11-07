@@ -7,6 +7,13 @@ class GuestsController < ApplicationController
   rescue_from ActiveRecord::RecordInvalid do |exception|
     redirect_to '/', danger: exception.message
   end
+  helper GuestsHelper
+
+  def seating_chart
+    authorize! :seating_chart, Guest
+
+    render 'seating_chart'
+  end
 
   def assign_table
     authorize! :assign_table, Guest

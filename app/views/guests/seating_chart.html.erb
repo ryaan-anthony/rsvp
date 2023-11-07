@@ -1,0 +1,53 @@
+<div class="container">
+  <p class="text-end"><a href="<%= sites_path %>">Main Dashboard</a> | <a href="<%= logout_path %>">Logout</a></p>
+  <% table_layout.each do |layout| %>
+    <div class="row">
+      <% layout.each do |table_no| %>
+        <table class="table col border m-3">
+          <thead class="text-center">
+          <tr>
+            <th colspan="5">Table <%= table_no %></th>
+          </tr>
+          </thead>
+          <tbody>
+          <% Guest.coming.where(table: table_no).each_with_index do |guest, index| %>
+            <tr class="align-items-center">
+              <td>
+                <form method="post" action="assign_table">
+                  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                  <%= hidden_field_tag :guest_id, guest.id %>
+                  <%= hidden_field_tag :table, nil %>
+                  <button type="submit" class="border-0 bg-transparent text-danger">
+                    X
+                  </button>
+                </form>
+              </td>
+              <td><%= index + 1 %></td>
+              <td><%= guest.first_name %></td>
+              <td><%= guest.last_name %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      <% end %>
+    </div>
+  <% end %>
+  <h4>Guests without a table:</h4>
+  <table class="table border m-3">
+    <tbody>
+    <% Guest.coming.where(table: nil).each do |guest| %>
+      <tr>
+        <td>
+          <form method="post" action="assign_table">
+            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+            <%= hidden_field_tag :guest_id, guest.id %>
+            <%= select_tag :table, options_for_select(assign_tables, guest.table), class: 'form-select form-select-sm', onchange: 'this.form.submit()' %>
+          </form>
+        </td>
+        <td><%= guest.first_name %></td>
+        <td><%= guest.last_name %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
