@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   get 'qr', to: 'login#create'
   post 'rsvp', to: 'guests#rsvp'
   post 'assign_table', to: 'guests#assign_table'
+  post 'assign_table_pos', to: 'guests#assign_table_pos'
   get 'seating_chart', to: 'guests#seating_chart'
 end

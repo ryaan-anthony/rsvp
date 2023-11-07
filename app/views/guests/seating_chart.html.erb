@@ -6,11 +6,12 @@
         <table class="table col border m-3">
           <thead class="text-center">
           <tr>
-            <th colspan="5">Table <%= table_no %></th>
+            <th colspan="6">Table <%= table_no %></th>
           </tr>
           </thead>
           <tbody>
-          <% Guest.coming.where(table: table_no).each_with_index do |guest, index| %>
+          <% guests = Guest.coming.where(table: table_no) %>
+          <% guests.order(table_pos: :asc).each_with_index do |guest, index| %>
             <tr class="align-items-center">
               <td>
                 <form method="post" action="assign_table">
@@ -22,9 +23,35 @@
                   </button>
                 </form>
               </td>
-              <td><%= index + 1 %></td>
+              <td><%= guest.table_pos %></td>
               <td><%= guest.first_name %></td>
               <td><%= guest.last_name %></td>
+              <td>
+                <% if guest.table_pos > 1 %>
+                  <form method="post" action="assign_table_pos">
+                    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                    <%= hidden_field_tag :guest_id, guest.id %>
+                    <%= hidden_field_tag :sort, :desc %>
+                    <%= hidden_field_tag :table_pos, guest.table_pos - 1 %>
+                    <button type="submit" class="border-0 bg-transparent text-primary">
+                      &#8593;
+                    </button>
+                  </form>
+                <% end %>
+              </td>
+              <td>
+                <% if guest.table_pos < guests.count %>
+                  <form method="post" action="assign_table_pos">
+                    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                    <%= hidden_field_tag :guest_id, guest.id %>
+                    <%= hidden_field_tag :sort, :asc %>
+                    <%= hidden_field_tag :table_pos, guest.table_pos + 1 %>
+                    <button type="submit" class="border-0 bg-transparent text-primary">
+                      &#8595;
+                    </button>
+                  </form>
+                <% end %>
+              </td>
             </tr>
           <% end %>
           </tbody>

@@ -15,6 +15,22 @@ class GuestsController < ApplicationController
     render 'seating_chart'
   end
 
+  def assign_table_pos
+    authorize! :assign_table_pos, Guest
+
+    sort = params.fetch(:sort)
+    table_pos = params.fetch(:table_pos)
+    guest = Guest.find(params.fetch(:guest_id))
+    guest.update!(table_pos: table_pos)
+
+    Guest.coming.where(table: guest.table).order(table_pos: :asc, updated_at: sort).each_with_index do |guest, index|
+      guest.update(table_pos: index + 1)
+    end
+
+    flash[:success] = "#{guest.full_name} has been moved to seat #{table_pos}."
+    redirect_back fallback_location: 'seating_chart'
+  end
+
   def assign_table
     authorize! :assign_table, Guest
 
