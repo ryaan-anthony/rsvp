@@ -4,14 +4,14 @@
     <div class="row">
       <% layout.each do |table_no| %>
         <table class="table col border m-1">
+          <% guests = Guest.coming.where(table: table_no) %>
           <thead class="text-center">
           <tr>
-            <th colspan="6">Table <%= table_no %></th>
+            <th colspan="5">Table <%= table_no %> <small class="text-muted">(<%= guests.count %> guests)</small></th>
           </tr>
           </thead>
           <tbody>
-          <% guests = Guest.coming.where(table: table_no) %>
-          <% guests.order(table_pos: :asc).each_with_index do |guest, index| %>
+          <% guests.order(table_pos: :asc).each do |guest| %>
             <tr class="align-items-center">
               <td>
                 <form method="post" action="assign_table">
@@ -23,7 +23,6 @@
                   </button>
                 </form>
               </td>
-              <td><%= guest.table_pos %></td>
               <td><%= guest.first_name %></td>
               <td><%= guest.last_name %></td>
               <td>
