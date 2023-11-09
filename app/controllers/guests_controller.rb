@@ -9,6 +9,12 @@ class GuestsController < ApplicationController
   end
   helper GuestsHelper
 
+  def placecards
+    authorize! :placecards, Guest
+
+    render 'placecards'
+  end
+
   def seating_chart
     authorize! :seating_chart, Guest
 

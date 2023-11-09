@@ -1,0 +1,6 @@
+<% Guest.where(status: [true, nil]).order(table: :asc).in_groups_of(6).map do |group| %>
+    <%= group.compact.map do |guest| %>
+      <% "#{guest.first_name},#{guest.last_name}" %>
+    <% end.join(',') %>
+  <br/>
+<% end %>
