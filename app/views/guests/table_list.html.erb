@@ -1,0 +1,6 @@
+<% ("A".."Z").each do |letter| %>
+  <h1><%= letter %></h1>
+  <% Guest.coming.where('last_name like ?', "#{letter}%").order(last_name: :asc, first_name: :asc).each do |guest| %>
+    <p><%= guest.last_name%>, <%= guest.first_name%> - <%= guest.table %></p>
+  <% end %>
+<% end %>

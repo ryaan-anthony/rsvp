@@ -9,6 +9,12 @@ class GuestsController < ApplicationController
   end
   helper GuestsHelper
 
+  def table_list
+    authorize! :table_list, Guest
+
+    render 'table_list'
+  end
+
   def placecards
     authorize! :placecards, Guest
 
