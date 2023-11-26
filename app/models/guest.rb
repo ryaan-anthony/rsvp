@@ -9,6 +9,7 @@ class Guest < ApplicationRecord
   # validates :last_name, presence: true
   scope :parents, -> { where(parent_id: nil) }
   scope :coming, -> { where(status: true) }
+  scope :seated, -> { where.not(table: nil) }
   scope :not_coming, -> { where(status: false) }
   scope :no_response, -> { where(status: nil) }
   scope :welcome_party, -> { where(welcome_party: true) }

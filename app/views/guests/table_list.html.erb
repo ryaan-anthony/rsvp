@@ -1,6 +1,7 @@
-<% ("A".."Z").each do |letter| %>
-  <h1><%= letter %></h1>
-  <% Guest.coming.where('last_name like ?', "#{letter}%").order(last_name: :asc, first_name: :asc).each do |guest| %>
-    <p><%= guest.last_name%>, <%= guest.first_name%> - <%= guest.table %></p>
-  <% end %>
+<% Guest.coming.seated.order(:last_name, :first_name).in_groups_of(12, false).each do |guests| %>
+  <% first = guests.first.last_name[0] %>
+  <% last = guests.last.last_name[0] %>
+  <% title = [first, last].uniq.compact.join(' - ') %>
+  <%= title %>,<%= guests.map { |guest| "\"#{guest.last_name}, #{guest.first_name}\",#{guest.table}"}.join(',') %>
+  <br/>
 <% end %>
