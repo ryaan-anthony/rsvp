@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   post 'assign_table_pos', to: 'guests#assign_table_pos'
   get 'placecards', to: 'guests#placecards'
   get 'table_list', to: 'guests#table_list'
+  get 'venue_list', to: 'guests#venue_list'
   get 'seating_chart', to: 'guests#seating_chart'
   get 'seating_chart/:table_no', to: 'guests#table_view', as: 'table_view'
 end

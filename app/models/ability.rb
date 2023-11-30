@@ -19,6 +19,7 @@ class Ability
     # Admin only options
     return unless Site.find_by(site_id: site_id).has_role? :admin
 
+    can :venue_list, Guest
     can :table_list, Guest
     can :placecards, Guest
     can :table_view, Guest

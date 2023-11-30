@@ -1,0 +1,4 @@
+<% Guest.coming.seated.order(:table, :table_pos).each do |guest| %>
+  <%= guest.table %>,<%= guest.table_pos %>,<%= guest.first_name %> <%= guest.last_name %>,<%= guest.meal_choice %>
+  <br/>
+<% end %>
