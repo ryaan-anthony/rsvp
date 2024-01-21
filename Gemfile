@@ -10,6 +10,8 @@ gem 'rack-attack'
 gem 'rails'
 gem 'redis'
 gem 'rolify'
+gem 'sentry-ruby'
+gem 'sentry-rails'
 
 group :development, :test do
   gem 'pry'
